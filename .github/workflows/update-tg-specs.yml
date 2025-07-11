@@ -1,0 +1,152 @@
+name: Update Telegram Specifications
+
+on:
+  schedule:
+    - cron: '0 0,12 * * *'  # каждые 12 часов
+  workflow_dispatch:
+
+jobs:
+  update-specs:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: Set up Go
+      uses: actions/setup-go@v5
+      with:
+        go-version: '1.23'
+
+    - name: Install tg-spec-cli and jq
+      run: |
+        go install github.com/superboomer/tg-spec-cli/cmd/tg-spec-cli@latest
+        sudo apt-get update && sudo apt-get install -y jq
+
+    # -------------------- Bot API --------------------
+    - name: Generate Bot API specification
+      run: tg-spec-cli generate --type=botapi --output=botapi-new.json
+
+    - name: Check Bot API changes
+      id: check_botapi
+      run: |
+        HAS_BOTAPI_CHANGES=false
+        BOTAPI_VERSION=""
+        BOTAPI_PREVIOUS_VERSION=""
+        mkdir -p botapi
+        BOTAPI_NEW_VERSION=$(jq -r '.info.version' botapi-new.json)
+        BOTAPI_SAFE_VERSION=$(echo "$BOTAPI_NEW_VERSION" | sed 's/[^a-zA-Z0-9.-]/_/g')
+
+        echo "New Bot API version: $BOTAPI_NEW_VERSION"
+
+        if [ -f "botapi-latest.json" ]; then
+          BOTAPI_CURRENT_VERSION=$(jq -r '.info.version' botapi-latest.json)
+          if [ "$BOTAPI_NEW_VERSION" != "$BOTAPI_CURRENT_VERSION" ]; then
+            BOTAPI_SAFE_CURRENT=$(echo "$BOTAPI_CURRENT_VERSION" | sed 's/[^a-zA-Z0-9.-]/_/g')
+            cp "botapi-latest.json" "botapi/botapi-v${BOTAPI_SAFE_CURRENT}.json"
+            HAS_BOTAPI_CHANGES=true
+            BOTAPI_VERSION="$BOTAPI_NEW_VERSION"
+            BOTAPI_PREVIOUS_VERSION="$BOTAPI_CURRENT_VERSION"
+          fi
+        else
+          HAS_BOTAPI_CHANGES=true
+          BOTAPI_VERSION="$BOTAPI_NEW_VERSION"
+        fi
+
+        echo "has_botapi_changes=${HAS_BOTAPI_CHANGES}" >> $GITHUB_OUTPUT
+        echo "botapi_version=${BOTAPI_VERSION}" >> $GITHUB_OUTPUT
+        echo "botapi_previous_version=${BOTAPI_PREVIOUS_VERSION}" >> $GITHUB_OUTPUT
+        echo "botapi_safe_version=${BOTAPI_SAFE_VERSION}" >> $GITHUB_OUTPUT
+
+    - name: Update Bot API file
+      if: steps.check_botapi.outputs.has_botapi_changes == 'true'
+      run: |
+        mv botapi-new.json botapi-latest.json
+        git config user.name "github-actions[bot]"
+        git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+        git add botapi-latest.json
+        echo "Updated Bot API file"
+
+    - name: Create Bot API Pull Request
+      if: steps.check_botapi.outputs.has_botapi_changes == 'true'
+      uses: peter-evans/create-pull-request@v6
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        commit-message: 'feat: update Telegram Bot API to v${{ steps.check_botapi.outputs.botapi_version }}'
+        title: 'Update Telegram Bot API to v${{ steps.check_botapi.outputs.botapi_version }}'
+        body: |
+          ## 🤖 Bot API Update
+          - **New Version**: v${{ steps.check_botapi.outputs.botapi_version }}
+          ${{ steps.check_botapi.outputs.botapi_previous_version && format('- **Previous**: v{0}', steps.check_botapi.outputs.botapi_previous_version) || '- Initial version' }}
+          - Updated `botapi-latest.json`
+        branch: update-botapi-v${{ steps.check_botapi.outputs.botapi_safe_version }}
+        delete-branch: true
+        labels: |
+          bot-api
+          automated
+          telegram-api
+
+    # -------------------- Gateway API --------------------
+    - name: Generate Gateway API specification
+      run: tg-spec-cli generate --type=gateway --output=gateway-new.json
+
+    - name: Check Gateway API changes
+      id: check_gateway
+      run: |
+        HAS_GATEWAY_CHANGES=false
+        GATEWAY_VERSION=""
+        GATEWAY_PREVIOUS_VERSION=""
+        mkdir -p gateway
+        GATEWAY_NEW_VERSION=$(jq -r '.info.version' gateway-new.json)
+        GATEWAY_SAFE_VERSION=$(echo "$GATEWAY_NEW_VERSION" | sed 's/[^a-zA-Z0-9.-]/_/g')
+
+        echo "New Gateway version: $GATEWAY_NEW_VERSION"
+
+        if [ -f "gateway-latest.json" ]; then
+          GATEWAY_CURRENT_VERSION=$(jq -r '.info.version' gateway-latest.json)
+          if [ "$GATEWAY_NEW_VERSION" != "$GATEWAY_CURRENT_VERSION" ]; then
+            GATEWAY_SAFE_CURRENT=$(echo "$GATEWAY_CURRENT_VERSION" | sed 's/[^a-zA-Z0-9.-]/_/g')
+            cp "gateway-latest.json" "gateway/gateway-v${GATEWAY_SAFE_CURRENT}.json"
+            HAS_GATEWAY_CHANGES=true
+            GATEWAY_VERSION="$GATEWAY_NEW_VERSION"
+            GATEWAY_PREVIOUS_VERSION="$GATEWAY_CURRENT_VERSION"
+          fi
+        else
+          HAS_GATEWAY_CHANGES=true
+          GATEWAY_VERSION="$GATEWAY_NEW_VERSION"
+        fi
+
+        echo "has_gateway_changes=${HAS_GATEWAY_CHANGES}" >> $GITHUB_OUTPUT
+        echo "gateway_version=${GATEWAY_VERSION}" >> $GITHUB_OUTPUT
+        echo "gateway_previous_version=${GATEWAY_PREVIOUS_VERSION}" >> $GITHUB_OUTPUT
+        echo "gateway_safe_version=${GATEWAY_SAFE_VERSION}" >> $GITHUB_OUTPUT
+
+    - name: Update Gateway API file
+      if: steps.check_gateway.outputs.has_gateway_changes == 'true'
+      run: |
+        mv gateway-new.json gateway-latest.json
+        git config user.name "github-actions[bot]"
+        git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+        git add gateway-latest.json
+        echo "Updated Gateway API file"
+
+    - name: Create Gateway API Pull Request
+      if: steps.check_gateway.outputs.has_gateway_changes == 'true'
+      uses: peter-evans/create-pull-request@v6
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        commit-message: 'feat: update Telegram Gateway API to v${{ steps.check_gateway.outputs.gateway_version }}'
+        title: 'Update Telegram Gateway API to v${{ steps.check_gateway.outputs.gateway_version }}'
+        body: |
+          ## 🌐 Gateway API Update
+          - **New Version**: v${{ steps.check_gateway.outputs.gateway_version }}
+          ${{ steps.check_gateway.outputs.gateway_previous_version && format('- **Previous**: v{0}', steps.check_gateway.outputs.gateway_previous_version) || '- Initial version' }}
+          - Updated `gateway-latest.json`
+        branch: update-gateway-v${{ steps.check_gateway.outputs.gateway_safe_version }}
+        delete-branch: true
+        labels: |
+          gateway-api
+          automated
+          telegram-api
