@@ -30,13 +30,13 @@ You can download the latest Bot API or Gateway API specification files directly 
 ### Bot API
 ```sh
 curl -L -o botapi-latest.json \
-  https://raw.githubusercontent.com/superboomer/tg-spec-oas/refs/heads/master/botapi-latest.json
+  https://raw.githubusercontent.com/superboomer/tg-spec-oas/master/botapi-latest.json
 ```
 
 ### Gateway API
 ```sh
 curl -L -o gateway-latest.json \
-  https://raw.githubusercontent.com/superboomer/tg-spec-oas/refs/heads/master/gateway-latest.json
+ https://raw.githubusercontent.com/superboomer/tg-spec-oas/master/gateway-latest.json
 ```
 
 ## 📚 Useful Links
