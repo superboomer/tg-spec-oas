@@ -3,7 +3,7 @@
     "info": {
         "title": "Telegram Bot API",
         "description": "The Bot API is an HTTP-based interface created for developers keen on building bots for Telegram.\\nTo learn how to create and set up a bot, please consult [Introduction to Bots](https://core.telegram.org/bots) and [Bot FAQ](https://core.telegram.org/bots/faq).",
-        "version": "9.2"
+        "version": "9.1"
     },
     "servers": [
         {
@@ -452,63 +452,6 @@
                 }
             }
         },
-        "/approveSuggestedPost": {
-            "post": {
-                "summary": "approveSuggestedPost",
-                "description": "Use this method to approve a suggested post in a direct messages chat. The bot must have the 'can_post_messages' administrator right in the corresponding channel chat. Returns True on success.",
-                "operationId": "approveSuggestedPost",
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "type": "object",
-                                "properties": {
-                                    "chat_id": {
-                                        "type": "integer"
-                                    },
-                                    "message_id": {
-                                        "type": "integer"
-                                    },
-                                    "send_date": {
-                                        "type": "integer"
-                                    }
-                                },
-                                "required": [
-                                    "chat_id",
-                                    "message_id"
-                                ]
-                            }
-                        }
-                    },
-                    "required": true
-                },
-                "responses": {
-                    "200": {
-                        "description": "Successful response",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "ok": {
-                                            "type": "boolean",
-                                            "description": "Request success indicator"
-                                        },
-                                        "result": {
-                                            "type": "boolean"
-                                        }
-                                    },
-                                    "required": [
-                                        "ok",
-                                        "result"
-                                    ]
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
         "/banChatMember": {
             "post": {
                 "summary": "banChatMember",
@@ -842,9 +785,6 @@
                                             }
                                         ]
                                     },
-                                    "direct_messages_topic_id": {
-                                        "type": "integer"
-                                    },
                                     "disable_notification": {
                                         "type": "boolean"
                                     },
@@ -891,9 +831,6 @@
                                     },
                                     "show_caption_above_media": {
                                         "type": "boolean"
-                                    },
-                                    "suggested_post_parameters": {
-                                        "$ref": "#/components/schemas/SuggestedPostParameters"
                                     },
                                     "video_start_timestamp": {
                                         "type": "integer"
@@ -956,9 +893,6 @@
                                                 "type": "string"
                                             }
                                         ]
-                                    },
-                                    "direct_messages_topic_id": {
-                                        "type": "integer"
                                     },
                                     "disable_notification": {
                                         "type": "boolean"
@@ -1488,63 +1422,6 @@
                 }
             }
         },
-        "/declineSuggestedPost": {
-            "post": {
-                "summary": "declineSuggestedPost",
-                "description": "Use this method to decline a suggested post in a direct messages chat. The bot must have the 'can_manage_direct_messages' administrator right in the corresponding channel chat. Returns True on success.",
-                "operationId": "declineSuggestedPost",
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "type": "object",
-                                "properties": {
-                                    "chat_id": {
-                                        "type": "integer"
-                                    },
-                                    "comment": {
-                                        "type": "string"
-                                    },
-                                    "message_id": {
-                                        "type": "integer"
-                                    }
-                                },
-                                "required": [
-                                    "chat_id",
-                                    "message_id"
-                                ]
-                            }
-                        }
-                    },
-                    "required": true
-                },
-                "responses": {
-                    "200": {
-                        "description": "Successful response",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "ok": {
-                                            "type": "boolean",
-                                            "description": "Request success indicator"
-                                        },
-                                        "result": {
-                                            "type": "boolean"
-                                        }
-                                    },
-                                    "required": [
-                                        "ok",
-                                        "result"
-                                    ]
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
         "/deleteBusinessMessages": {
             "post": {
                 "summary": "deleteBusinessMessages",
@@ -1780,7 +1657,7 @@
         "/deleteMessage": {
             "post": {
                 "summary": "deleteMessage",
-                "description": "Use this method to delete a message, including service messages, with the following limitations:- A message can only be deleted if it was sent less than 48 hours ago.- Service messages about a supergroup, channel, or forum topic creation can't be deleted.- A dice message in a private chat can only be deleted if it was sent more than 24 hours ago.- Bots can delete outgoing messages in private chats, groups, and supergroups.- Bots can delete incoming messages in private chats.- Bots granted can_post_messages permissions can delete outgoing messages in channels.- If the bot is an administrator of a group, it can delete any message there.- If the bot has can_delete_messages administrator right in a supergroup or a channel, it can delete any message there.- If the bot has can_manage_direct_messages administrator right in a channel, it can delete any message in the corresponding direct messages chat.Returns True on success.",
+                "description": "Use this method to delete a message, including service messages, with the following limitations:- A message can only be deleted if it was sent less than 48 hours ago.- Service messages about a supergroup, channel, or forum topic creation can't be deleted.- A dice message in a private chat can only be deleted if it was sent more than 24 hours ago.- Bots can delete outgoing messages in private chats, groups, and supergroups.- Bots can delete incoming messages in private chats.- Bots granted can_post_messages permissions can delete outgoing messages in channels.- If the bot is an administrator of a group, it can delete any message there.- If the bot has can_delete_messages permission in a supergroup or a channel, it can delete any message there.Returns True on success.",
                 "operationId": "deleteMessage",
                 "requestBody": {
                     "content": {
@@ -3086,9 +2963,6 @@
                                             }
                                         ]
                                     },
-                                    "direct_messages_topic_id": {
-                                        "type": "integer"
-                                    },
                                     "disable_notification": {
                                         "type": "boolean"
                                     },
@@ -3110,9 +2984,6 @@
                                     },
                                     "protect_content": {
                                         "type": "boolean"
-                                    },
-                                    "suggested_post_parameters": {
-                                        "$ref": "#/components/schemas/SuggestedPostParameters"
                                     },
                                     "video_start_timestamp": {
                                         "type": "integer"
@@ -3175,9 +3046,6 @@
                                                 "type": "string"
                                             }
                                         ]
-                                    },
-                                    "direct_messages_topic_id": {
-                                        "type": "integer"
                                     },
                                     "disable_notification": {
                                         "type": "boolean"
@@ -4561,7 +4429,7 @@
         "/pinChatMessage": {
             "post": {
                 "summary": "pinChatMessage",
-                "description": "Use this method to add a message to the list of pinned messages in a chat. In private chats and channel direct messages chats, all non-service messages can be pinned. Conversely, the bot must be an administrator with the 'can_pin_messages' right or the 'can_edit_messages' right to pin messages in groups and channels respectively. Returns True on success.",
+                "description": "Use this method to add a message to the list of pinned messages in a chat. If the chat is not a private chat, the bot must be an administrator in the chat for this to work and must have the 'can_pin_messages' administrator right in a supergroup or 'can_edit_messages' administrator right in a channel. Returns True on success.",
                 "operationId": "pinChatMessage",
                 "requestBody": {
                     "content": {
@@ -4737,9 +4605,6 @@
                                         "type": "boolean"
                                     },
                                     "can_manage_chat": {
-                                        "type": "boolean"
-                                    },
-                                    "can_manage_direct_messages": {
                                         "type": "boolean"
                                     },
                                     "can_manage_topics": {
@@ -5505,9 +5370,6 @@
                                             }
                                         ]
                                     },
-                                    "direct_messages_topic_id": {
-                                        "type": "integer"
-                                    },
                                     "disable_notification": {
                                         "type": "boolean"
                                     },
@@ -5553,9 +5415,6 @@
                                     },
                                     "show_caption_above_media": {
                                         "type": "boolean"
-                                    },
-                                    "suggested_post_parameters": {
-                                        "$ref": "#/components/schemas/SuggestedPostParameters"
                                     },
                                     "thumbnail": {
                                         "$ref": "#/components/schemas/InputFile"
@@ -5639,9 +5498,6 @@
                                             }
                                         ]
                                     },
-                                    "direct_messages_topic_id": {
-                                        "type": "integer"
-                                    },
                                     "disable_notification": {
                                         "type": "boolean"
                                     },
@@ -5681,9 +5537,6 @@
                                     },
                                     "reply_parameters": {
                                         "$ref": "#/components/schemas/ReplyParameters"
-                                    },
-                                    "suggested_post_parameters": {
-                                        "$ref": "#/components/schemas/SuggestedPostParameters"
                                     },
                                     "thumbnail": {
                                         "$ref": "#/components/schemas/InputFile"
@@ -5895,9 +5748,6 @@
                                             }
                                         ]
                                     },
-                                    "direct_messages_topic_id": {
-                                        "type": "integer"
-                                    },
                                     "disable_notification": {
                                         "type": "boolean"
                                     },
@@ -5937,9 +5787,6 @@
                                     },
                                     "reply_parameters": {
                                         "$ref": "#/components/schemas/ReplyParameters"
-                                    },
-                                    "suggested_post_parameters": {
-                                        "$ref": "#/components/schemas/SuggestedPostParameters"
                                     },
                                     "vcard": {
                                         "type": "string"
@@ -6009,9 +5856,6 @@
                                             }
                                         ]
                                     },
-                                    "direct_messages_topic_id": {
-                                        "type": "integer"
-                                    },
                                     "disable_notification": {
                                         "type": "boolean"
                                     },
@@ -6045,9 +5889,6 @@
                                     },
                                     "reply_parameters": {
                                         "$ref": "#/components/schemas/ReplyParameters"
-                                    },
-                                    "suggested_post_parameters": {
-                                        "$ref": "#/components/schemas/SuggestedPostParameters"
                                     }
                                 },
                                 "required": [
@@ -6121,9 +5962,6 @@
                                             }
                                         ]
                                     },
-                                    "direct_messages_topic_id": {
-                                        "type": "integer"
-                                    },
                                     "disable_content_type_detection": {
                                         "type": "boolean"
                                     },
@@ -6163,9 +6001,6 @@
                                     },
                                     "reply_parameters": {
                                         "$ref": "#/components/schemas/ReplyParameters"
-                                    },
-                                    "suggested_post_parameters": {
-                                        "$ref": "#/components/schemas/SuggestedPostParameters"
                                     },
                                     "thumbnail": {
                                         "$ref": "#/components/schemas/InputFile"
@@ -6393,9 +6228,6 @@
                                     "description": {
                                         "type": "string"
                                     },
-                                    "direct_messages_topic_id": {
-                                        "type": "integer"
-                                    },
                                     "disable_notification": {
                                         "type": "boolean"
                                     },
@@ -6467,9 +6299,6 @@
                                     },
                                     "start_parameter": {
                                         "type": "string"
-                                    },
-                                    "suggested_post_parameters": {
-                                        "$ref": "#/components/schemas/SuggestedPostParameters"
                                     },
                                     "suggested_tip_amounts": {
                                         "type": "array",
@@ -6548,9 +6377,6 @@
                                             }
                                         ]
                                     },
-                                    "direct_messages_topic_id": {
-                                        "type": "integer"
-                                    },
                                     "disable_notification": {
                                         "type": "boolean"
                                     },
@@ -6599,9 +6425,6 @@
                                     },
                                     "reply_parameters": {
                                         "$ref": "#/components/schemas/ReplyParameters"
-                                    },
-                                    "suggested_post_parameters": {
-                                        "$ref": "#/components/schemas/SuggestedPostParameters"
                                     }
                                 },
                                 "required": [
@@ -6644,7 +6467,7 @@
         "/sendMediaGroup": {
             "post": {
                 "summary": "sendMediaGroup",
-                "description": "Use this method to send a group of photos, videos, documents or audios as an album. Documents and audio files can be only grouped in an album with messages of the same type. On success, an array of Message objects that were sent is returned.",
+                "description": "Use this method to send a group of photos, videos, documents or audios as an album. Documents and audio files can be only grouped in an album with messages of the same type. On success, an array of Messages that were sent is returned.",
                 "operationId": "sendMediaGroup",
                 "requestBody": {
                     "content": {
@@ -6667,9 +6490,6 @@
                                                 "type": "string"
                                             }
                                         ]
-                                    },
-                                    "direct_messages_topic_id": {
-                                        "type": "integer"
                                     },
                                     "disable_notification": {
                                         "type": "boolean"
@@ -6772,9 +6592,6 @@
                                             }
                                         ]
                                     },
-                                    "direct_messages_topic_id": {
-                                        "type": "integer"
-                                    },
                                     "disable_notification": {
                                         "type": "boolean"
                                     },
@@ -6817,9 +6634,6 @@
                                     },
                                     "reply_parameters": {
                                         "$ref": "#/components/schemas/ReplyParameters"
-                                    },
-                                    "suggested_post_parameters": {
-                                        "$ref": "#/components/schemas/SuggestedPostParameters"
                                     },
                                     "text": {
                                         "type": "string"
@@ -6897,9 +6711,6 @@
                                             }
                                         ]
                                     },
-                                    "direct_messages_topic_id": {
-                                        "type": "integer"
-                                    },
                                     "disable_notification": {
                                         "type": "boolean"
                                     },
@@ -6908,9 +6719,6 @@
                                         "items": {
                                             "$ref": "#/components/schemas/InputPaidMedia"
                                         }
-                                    },
-                                    "message_thread_id": {
-                                        "type": "integer"
                                     },
                                     "parse_mode": {
                                         "type": "string"
@@ -6945,9 +6753,6 @@
                                     },
                                     "star_count": {
                                         "type": "integer"
-                                    },
-                                    "suggested_post_parameters": {
-                                        "$ref": "#/components/schemas/SuggestedPostParameters"
                                     }
                                 },
                                 "required": [
@@ -7023,9 +6828,6 @@
                                             }
                                         ]
                                     },
-                                    "direct_messages_topic_id": {
-                                        "type": "integer"
-                                    },
                                     "disable_notification": {
                                         "type": "boolean"
                                     },
@@ -7068,9 +6870,6 @@
                                     },
                                     "show_caption_above_media": {
                                         "type": "boolean"
-                                    },
-                                    "suggested_post_parameters": {
-                                        "$ref": "#/components/schemas/SuggestedPostParameters"
                                     }
                                 },
                                 "required": [
@@ -7283,9 +7082,6 @@
                                             }
                                         ]
                                     },
-                                    "direct_messages_topic_id": {
-                                        "type": "integer"
-                                    },
                                     "disable_notification": {
                                         "type": "boolean"
                                     },
@@ -7322,9 +7118,6 @@
                                     },
                                     "sticker": {
                                         "$ref": "#/components/schemas/InputFile"
-                                    },
-                                    "suggested_post_parameters": {
-                                        "$ref": "#/components/schemas/SuggestedPostParameters"
                                     }
                                 },
                                 "required": [
@@ -7393,9 +7186,6 @@
                                             }
                                         ]
                                     },
-                                    "direct_messages_topic_id": {
-                                        "type": "integer"
-                                    },
                                     "disable_notification": {
                                         "type": "boolean"
                                     },
@@ -7444,9 +7234,6 @@
                                     },
                                     "reply_parameters": {
                                         "$ref": "#/components/schemas/ReplyParameters"
-                                    },
-                                    "suggested_post_parameters": {
-                                        "$ref": "#/components/schemas/SuggestedPostParameters"
                                     },
                                     "title": {
                                         "type": "string"
@@ -7530,9 +7317,6 @@
                                     "cover": {
                                         "$ref": "#/components/schemas/InputFile"
                                     },
-                                    "direct_messages_topic_id": {
-                                        "type": "integer"
-                                    },
                                     "disable_notification": {
                                         "type": "boolean"
                                     },
@@ -7581,9 +7365,6 @@
                                     },
                                     "start_timestamp": {
                                         "type": "integer"
-                                    },
-                                    "suggested_post_parameters": {
-                                        "$ref": "#/components/schemas/SuggestedPostParameters"
                                     },
                                     "supports_streaming": {
                                         "type": "boolean"
@@ -7661,9 +7442,6 @@
                                             }
                                         ]
                                     },
-                                    "direct_messages_topic_id": {
-                                        "type": "integer"
-                                    },
                                     "disable_notification": {
                                         "type": "boolean"
                                     },
@@ -7700,9 +7478,6 @@
                                     },
                                     "reply_parameters": {
                                         "$ref": "#/components/schemas/ReplyParameters"
-                                    },
-                                    "suggested_post_parameters": {
-                                        "$ref": "#/components/schemas/SuggestedPostParameters"
                                     },
                                     "thumbnail": {
                                         "$ref": "#/components/schemas/InputFile"
@@ -7783,9 +7558,6 @@
                                             }
                                         ]
                                     },
-                                    "direct_messages_topic_id": {
-                                        "type": "integer"
-                                    },
                                     "disable_notification": {
                                         "type": "boolean"
                                     },
@@ -7822,9 +7594,6 @@
                                     },
                                     "reply_parameters": {
                                         "$ref": "#/components/schemas/ReplyParameters"
-                                    },
-                                    "suggested_post_parameters": {
-                                        "$ref": "#/components/schemas/SuggestedPostParameters"
                                     },
                                     "voice": {
                                         "$ref": "#/components/schemas/InputFile"
@@ -9969,7 +9738,7 @@
         "/unpinAllChatMessages": {
             "post": {
                 "summary": "unpinAllChatMessages",
-                "description": "Use this method to clear the list of pinned messages in a chat. In private chats and channel direct messages chats, no additional rights are required to unpin all pinned messages. Conversely, the bot must be an administrator with the 'can_pin_messages' right or the 'can_edit_messages' right to unpin all pinned messages in groups and channels respectively. Returns True on success.",
+                "description": "Use this method to clear the list of pinned messages in a chat. If the chat is not a private chat, the bot must be an administrator in the chat for this to work and must have the 'can_pin_messages' administrator right in a supergroup or 'can_edit_messages' administrator right in a channel. Returns True on success.",
                 "operationId": "unpinAllChatMessages",
                 "requestBody": {
                     "content": {
@@ -10144,7 +9913,7 @@
         "/unpinChatMessage": {
             "post": {
                 "summary": "unpinChatMessage",
-                "description": "Use this method to remove a message from the list of pinned messages in a chat. In private chats and channel direct messages chats, all messages can be unpinned. Conversely, the bot must be an administrator with the 'can_pin_messages' right or the 'can_edit_messages' right to unpin messages in groups and channels respectively. Returns True on success.",
+                "description": "Use this method to remove a message from the list of pinned messages in a chat. If the chat is not a private chat, the bot must be an administrator in the chat for this to work and must have the 'can_pin_messages' administrator right in a supergroup or 'can_edit_messages' administrator right in a channel. Returns True on success.",
                 "operationId": "unpinChatMessage",
                 "requestBody": {
                     "content": {
@@ -10822,7 +10591,7 @@
                                 "type": "string"
                             }
                         ],
-                        "description": "Unique identifier for the target chat or username of the target supergroup (in the format @supergroupusername). Channel direct messages chats and channel chats aren't supported."
+                        "description": "Unique identifier for the target chat or username of the target supergroup (in the format @supergroupusername)"
                     },
                     "type": {
                         "type": "string",
@@ -10843,7 +10612,7 @@
                                 "type": "string"
                             }
                         ],
-                        "description": "Unique identifier for the target chat or username of the target supergroup (in the format @supergroupusername). Channel direct messages chats and channel chats aren't supported."
+                        "description": "Unique identifier for the target chat or username of the target supergroup (in the format @supergroupusername)"
                     },
                     "type": {
                         "type": "string",
@@ -10864,7 +10633,7 @@
                                 "type": "string"
                             }
                         ],
-                        "description": "Unique identifier for the target chat or username of the target supergroup (in the format @supergroupusername). Channel direct messages chats and channel chats aren't supported."
+                        "description": "Unique identifier for the target chat or username of the target supergroup (in the format @supergroupusername)"
                     },
                     "type": {
                         "type": "string",
@@ -11142,10 +10911,6 @@
                         "type": "integer",
                         "description": "Unique identifier for this chat. This number may have more than 32 significant bits and some programming languages may have difficulty/silent defects in interpreting it. But it has at most 52 significant bits, so a signed 64-bit integer or double-precision float type are safe for storing this identifier."
                     },
-                    "is_direct_messages": {
-                        "type": "boolean",
-                        "description": "Optional. True, if the chat is the direct messages chat of a channel"
-                    },
                     "is_forum": {
                         "type": "boolean",
                         "description": "Optional. True, if the supergroup chat is a forum (has topics enabled)"
@@ -11199,10 +10964,6 @@
                     "can_manage_chat": {
                         "type": "boolean",
                         "description": "True, if the administrator can access the chat event log, get boost list, see hidden supergroup and channel members, report spam messages, ignore slow mode, and send messages to the chat without paying Telegram Stars. Implied by any other administrator privilege."
-                    },
-                    "can_manage_direct_messages": {
-                        "type": "boolean",
-                        "description": "Optional. True, if the administrator can manage direct messages of the channel and decline suggested posts; for channels only"
                     },
                     "can_manage_topics": {
                         "type": "boolean",
@@ -11495,10 +11256,6 @@
                         "type": "string",
                         "description": "Optional. Primary invite link, for groups, supergroups and channel chats"
                     },
-                    "is_direct_messages": {
-                        "type": "boolean",
-                        "description": "Optional. True, if the chat is the direct messages chat of a channel"
-                    },
                     "is_forum": {
                         "type": "boolean",
                         "description": "Optional. True, if the supergroup chat is a forum (has topics enabled)"
@@ -11530,10 +11287,6 @@
                     "message_auto_delete_time": {
                         "type": "integer",
                         "description": "Optional. The time after which all messages sent to the chat will be automatically deleted; in seconds"
-                    },
-                    "parent_chat": {
-                        "$ref": "#/components/schemas/Chat",
-                        "description": "Optional. Information about the corresponding channel chat; for direct messages chats only"
                     },
                     "permissions": {
                         "$ref": "#/components/schemas/ChatPermissions",
@@ -11718,10 +11471,6 @@
                     "can_manage_chat": {
                         "type": "boolean",
                         "description": "True, if the administrator can access the chat event log, get boost list, see hidden supergroup and channel members, report spam messages, ignore slow mode, and send messages to the chat without paying Telegram Stars. Implied by any other administrator privilege."
-                    },
-                    "can_manage_direct_messages": {
-                        "type": "boolean",
-                        "description": "Optional. True, if the administrator can manage direct messages of the channel and decline suggested posts; for channels only"
                     },
                     "can_manage_topics": {
                         "type": "boolean",
@@ -12263,20 +12012,6 @@
                 },
                 "description": "Describes a service message about a change in the price of direct messages sent to a channel chat.\n"
             },
-            "DirectMessagesTopic": {
-                "type": "object",
-                "properties": {
-                    "topic_id": {
-                        "type": "integer",
-                        "description": "Unique identifier of the topic"
-                    },
-                    "user": {
-                        "$ref": "#/components/schemas/User",
-                        "description": "Optional. Information about the user that created the topic. Currently, it is always present"
-                    }
-                },
-                "description": "Describes a topic of a direct messages chat.\n"
-            },
             "Document": {
                 "type": "object",
                 "properties": {
@@ -12657,10 +12392,6 @@
                         "type": "string",
                         "description": "Unique identifier of the gift"
                     },
-                    "publisher_chat": {
-                        "$ref": "#/components/schemas/Chat",
-                        "description": "Optional. Information about the chat that published the gift"
-                    },
                     "remaining_count": {
                         "type": "integer",
                         "description": "Optional. The number of remaining gifts of this type that can be sent; for limited gifts only"
@@ -12918,15 +12649,15 @@
                     },
                     "switch_inline_query": {
                         "type": "string",
-                        "description": "Optional. If set, pressing the button will prompt the user to select one of their chats, open that chat and insert the bot's username and the specified inline query in the input field. May be empty, in which case just the bot's username will be inserted. Not supported for messages sent in channel direct messages chats and on behalf of a Telegram Business account."
+                        "description": "Optional. If set, pressing the button will prompt the user to select one of their chats, open that chat and insert the bot's username and the specified inline query in the input field. May be empty, in which case just the bot's username will be inserted. Not supported for messages sent on behalf of a Telegram Business account."
                     },
                     "switch_inline_query_chosen_chat": {
                         "$ref": "#/components/schemas/SwitchInlineQueryChosenChat",
-                        "description": "Optional. If set, pressing the button will prompt the user to select one of their chats of the specified type, open that chat and insert the bot's username and the specified inline query in the input field. Not supported for messages sent in channel direct messages chats and on behalf of a Telegram Business account."
+                        "description": "Optional. If set, pressing the button will prompt the user to select one of their chats of the specified type, open that chat and insert the bot's username and the specified inline query in the input field. Not supported for messages sent on behalf of a Telegram Business account."
                     },
                     "switch_inline_query_current_chat": {
                         "type": "string",
-                        "description": "Optional. If set, pressing the button will insert the bot's username and the specified inline query in the current chat's input field. May be empty, in which case only the bot's username will be inserted.This offers a quick way for the user to open your bot in inline mode in the same chat - good for selecting something from multiple options. Not supported in channels and for messages sent in channel direct messages chats and on behalf of a Telegram Business account."
+                        "description": "Optional. If set, pressing the button will insert the bot's username and the specified inline query in the current chat's input field. May be empty, in which case only the bot's username will be inserted.This offers a quick way for the user to open your bot in inline mode in the same chat - good for selecting something from multiple options. Not supported in channels and for messages sent on behalf of a Telegram Business account."
                     },
                     "text": {
                         "type": "string",
@@ -15257,10 +14988,6 @@
                         "$ref": "#/components/schemas/DirectMessagePriceChanged",
                         "description": "Optional. Service message: the price for paid messages in the corresponding direct messages chat of a channel has changed"
                     },
-                    "direct_messages_topic": {
-                        "$ref": "#/components/schemas/DirectMessagesTopic",
-                        "description": "Optional. Information about the direct messages chat topic that contains the message"
-                    },
                     "document": {
                         "$ref": "#/components/schemas/Document",
                         "description": "Optional. Message is a general file, information about the file"
@@ -15363,10 +15090,6 @@
                     "is_from_offline": {
                         "type": "boolean",
                         "description": "Optional. True, if the message was sent by an implicit action, for example, as an away or a greeting business message, or as a scheduled message"
-                    },
-                    "is_paid_post": {
-                        "type": "boolean",
-                        "description": "Optional. True, if the message is a paid post. Note that such posts must not be deleted for 24 hours to receive the payment and can't be edited."
                     },
                     "is_topic_message": {
                         "type": "boolean",
@@ -15473,10 +15196,6 @@
                         "$ref": "#/components/schemas/InlineKeyboardMarkup",
                         "description": "Optional. Inline keyboard attached to the message. login_url buttons are represented as ordinary url buttons."
                     },
-                    "reply_to_checklist_task_id": {
-                        "type": "integer",
-                        "description": "Optional. Identifier of the specific checklist task that is being replied to"
-                    },
                     "reply_to_message": {
                         "$ref": "#/components/schemas/Message",
                         "description": "Optional. For replies in the same chat and message thread, the original message. Note that the Message object in this field will not contain further reply_to_message fields even if it itself is a reply."
@@ -15512,30 +15231,6 @@
                     "successful_payment": {
                         "$ref": "#/components/schemas/SuccessfulPayment",
                         "description": "Optional. Message is a service message about a successful payment, information about the payment. More about payments »"
-                    },
-                    "suggested_post_approval_failed": {
-                        "$ref": "#/components/schemas/SuggestedPostApprovalFailed",
-                        "description": "Optional. Service message: approval of a suggested post has failed"
-                    },
-                    "suggested_post_approved": {
-                        "$ref": "#/components/schemas/SuggestedPostApproved",
-                        "description": "Optional. Service message: a suggested post was approved"
-                    },
-                    "suggested_post_declined": {
-                        "$ref": "#/components/schemas/SuggestedPostDeclined",
-                        "description": "Optional. Service message: a suggested post was declined"
-                    },
-                    "suggested_post_info": {
-                        "$ref": "#/components/schemas/SuggestedPostInfo",
-                        "description": "Optional. Information about suggested post parameters if the message is a suggested post in a channel direct messages chat. If the message is an approved or declined suggested post, then it can't be edited."
-                    },
-                    "suggested_post_paid": {
-                        "$ref": "#/components/schemas/SuggestedPostPaid",
-                        "description": "Optional. Service message: payment for a suggested post was received"
-                    },
-                    "suggested_post_refunded": {
-                        "$ref": "#/components/schemas/SuggestedPostRefunded",
-                        "description": "Optional. Service message: payment for a suggested post was refunded"
                     },
                     "supergroup_chat_created": {
                         "type": "boolean",
@@ -16736,11 +16431,7 @@
                                 "type": "string"
                             }
                         ],
-                        "description": "Optional. If the message to be replied to is from a different chat, unique identifier for the chat or username of the channel (in the format @channelusername). Not supported for messages sent on behalf of a business account and messages from channel direct messages chats."
-                    },
-                    "checklist_task_id": {
-                        "type": "integer",
-                        "description": "Optional. Identifier of the specific checklist task to be replied to"
+                        "description": "Optional. If the message to be replied to is from a different chat, unique identifier for the chat or username of the channel (in the format @channelusername). Not supported for messages sent on behalf of a business account."
                     },
                     "message_id": {
                         "type": "integer",
@@ -17318,134 +17009,6 @@
                 },
                 "description": "This object contains basic information about a successful payment. Note that if the buyer initiates a chargeback with the relevant payment provider following this transaction, the funds may be debited from your balance. This is outside of Telegram's control.\n"
             },
-            "SuggestedPostApprovalFailed": {
-                "type": "object",
-                "properties": {
-                    "price": {
-                        "$ref": "#/components/schemas/SuggestedPostPrice",
-                        "description": "Expected price of the post"
-                    },
-                    "suggested_post_message": {
-                        "$ref": "#/components/schemas/Message",
-                        "description": "Optional. Message containing the suggested post whose approval has failed. Note that the Message object in this field will not contain the reply_to_message field even if it itself is a reply."
-                    }
-                },
-                "description": "Describes a service message about the failed approval of a suggested post. Currently, only caused by insufficient user funds at the time of approval.\n"
-            },
-            "SuggestedPostApproved": {
-                "type": "object",
-                "properties": {
-                    "price": {
-                        "$ref": "#/components/schemas/SuggestedPostPrice",
-                        "description": "Optional. Amount paid for the post"
-                    },
-                    "send_date": {
-                        "type": "integer",
-                        "description": "Date when the post will be published"
-                    },
-                    "suggested_post_message": {
-                        "$ref": "#/components/schemas/Message",
-                        "description": "Optional. Message containing the suggested post. Note that the Message object in this field will not contain the reply_to_message field even if it itself is a reply."
-                    }
-                },
-                "description": "Describes a service message about the approval of a suggested post.\n"
-            },
-            "SuggestedPostDeclined": {
-                "type": "object",
-                "properties": {
-                    "comment": {
-                        "type": "string",
-                        "description": "Optional. Comment with which the post was declined"
-                    },
-                    "suggested_post_message": {
-                        "$ref": "#/components/schemas/Message",
-                        "description": "Optional. Message containing the suggested post. Note that the Message object in this field will not contain the reply_to_message field even if it itself is a reply."
-                    }
-                },
-                "description": "Describes a service message about the rejection of a suggested post.\n"
-            },
-            "SuggestedPostInfo": {
-                "type": "object",
-                "properties": {
-                    "price": {
-                        "$ref": "#/components/schemas/SuggestedPostPrice",
-                        "description": "Optional. Proposed price of the post. If the field is omitted, then the post is unpaid."
-                    },
-                    "send_date": {
-                        "type": "integer",
-                        "description": "Optional. Proposed send date of the post. If the field is omitted, then the post can be published at any time within 30 days at the sole discretion of the user or administrator who approves it."
-                    },
-                    "state": {
-                        "type": "string",
-                        "description": "State of the suggested post. Currently, it can be one of “pending”, “approved”, “declined”."
-                    }
-                },
-                "description": "Contains information about a suggested post.\n"
-            },
-            "SuggestedPostPaid": {
-                "type": "object",
-                "properties": {
-                    "amount": {
-                        "type": "integer",
-                        "description": "Optional. The amount of the currency that was received by the channel in nanotoncoins; for payments in toncoins only"
-                    },
-                    "currency": {
-                        "type": "string",
-                        "description": "Currency in which the payment was made. Currently, one of “XTR” for Telegram Stars or “TON” for toncoins"
-                    },
-                    "star_amount": {
-                        "$ref": "#/components/schemas/StarAmount",
-                        "description": "Optional. The amount of Telegram Stars that was received by the channel; for payments in Telegram Stars only"
-                    },
-                    "suggested_post_message": {
-                        "$ref": "#/components/schemas/Message",
-                        "description": "Optional. Message containing the suggested post. Note that the Message object in this field will not contain the reply_to_message field even if it itself is a reply."
-                    }
-                },
-                "description": "Describes a service message about a successful payment for a suggested post.\n"
-            },
-            "SuggestedPostParameters": {
-                "type": "object",
-                "properties": {
-                    "price": {
-                        "$ref": "#/components/schemas/SuggestedPostPrice",
-                        "description": "Optional. Proposed price for the post. If the field is omitted, then the post is unpaid."
-                    },
-                    "send_date": {
-                        "type": "integer",
-                        "description": "Optional. Proposed send date of the post. If specified, then the date must be between 300 second and 2678400 seconds (30 days) in the future. If the field is omitted, then the post can be published at any time within 30 days at the sole discretion of the user who approves it."
-                    }
-                },
-                "description": "Contains parameters of a post that is being suggested by the bot.\n"
-            },
-            "SuggestedPostPrice": {
-                "type": "object",
-                "properties": {
-                    "amount": {
-                        "type": "integer",
-                        "description": "The amount of the currency that will be paid for the post in the smallest units of the currency, i.e. Telegram Stars or nanotoncoins. Currently, price in Telegram Stars must be between 5 and 100000, and price in nanotoncoins must be between 10000000 and 10000000000000."
-                    },
-                    "currency": {
-                        "type": "string",
-                        "description": "Currency in which the post will be paid. Currently, must be one of “XTR” for Telegram Stars or “TON” for toncoins"
-                    }
-                },
-                "description": "Desribes price of a suggested post.\n"
-            },
-            "SuggestedPostRefunded": {
-                "type": "object",
-                "properties": {
-                    "reason": {
-                        "type": "string",
-                        "description": "Reason for the refund. Currently, one of “post_deleted” if the post was deleted within 24 hours of being posted or removed from scheduled messages without being posted, or “payment_refunded” if the payer refunded their payment."
-                    },
-                    "suggested_post_message": {
-                        "$ref": "#/components/schemas/Message",
-                        "description": "Optional. Message containing the suggested post. Note that the Message object in this field will not contain the reply_to_message field even if it itself is a reply."
-                    }
-                },
-                "description": "Describes a service message about a payment refund for a suggested post.\n"
-            },
             "SwitchInlineQueryChosenChat": {
                 "type": "object",
                 "properties": {
@@ -17679,10 +17242,6 @@
                     "number": {
                         "type": "integer",
                         "description": "Unique number of the upgraded gift among gifts upgraded from the same regular gift"
-                    },
-                    "publisher_chat": {
-                        "$ref": "#/components/schemas/Chat",
-                        "description": "Optional. Information about the chat that published the gift"
                     },
                     "symbol": {
                         "$ref": "#/components/schemas/UniqueGiftSymbol",
