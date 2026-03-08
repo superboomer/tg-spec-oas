@@ -3,7 +3,7 @@
     "info": {
         "title": "Telegram Bot API",
         "description": "The Bot API is an HTTP-based interface created for developers keen on building bots for Telegram.\\nTo learn how to create and set up a bot, please consult [Introduction to Bots](https://core.telegram.org/bots) and [Bot FAQ](https://core.telegram.org/bots/faq).",
-        "version": "9.5"
+        "version": "9.2"
     },
     "servers": [
         {
@@ -858,9 +858,6 @@
                                             }
                                         ]
                                     },
-                                    "message_effect_id": {
-                                        "type": "string"
-                                    },
                                     "message_id": {
                                         "type": "integer"
                                     },
@@ -1172,7 +1169,7 @@
         "/createForumTopic": {
             "post": {
                 "summary": "createForumTopic",
-                "description": "Use this method to create a topic in a forum supergroup chat or a private chat with a user. In the case of a supergroup chat the bot must be an administrator in the chat for this to work and must have the can_manage_topics administrator right. Returns information about the created topic as a ForumTopic object.",
+                "description": "Use this method to create a topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have the can_manage_topics administrator rights. Returns information about the created topic as a ForumTopic object.",
                 "operationId": "createForumTopic",
                 "requestBody": {
                     "content": {
@@ -1722,7 +1719,7 @@
         "/deleteForumTopic": {
             "post": {
                 "summary": "deleteForumTopic",
-                "description": "Use this method to delete a forum topic along with all its messages in a forum supergroup chat or a private chat with a user. In the case of a supergroup chat the bot must be an administrator in the chat for this to work and must have the can_delete_messages administrator rights. Returns True on success.",
+                "description": "Use this method to delete a forum topic along with all its messages in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have the can_delete_messages administrator rights. Returns True on success.",
                 "operationId": "deleteForumTopic",
                 "requestBody": {
                     "content": {
@@ -2296,7 +2293,7 @@
         "/editForumTopic": {
             "post": {
                 "summary": "editForumTopic",
-                "description": "Use this method to edit name and icon of a topic in a forum supergroup chat or a private chat with a user. In the case of a supergroup chat the bot must be an administrator in the chat for this to work and must have the can_manage_topics administrator rights, unless it is the creator of the topic. Returns True on success.",
+                "description": "Use this method to edit name and icon of a topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have the can_manage_topics administrator rights, unless it is the creator of the topic. Returns True on success.",
                 "operationId": "editForumTopic",
                 "requestBody": {
                     "content": {
@@ -3105,9 +3102,6 @@
                                             }
                                         ]
                                     },
-                                    "message_effect_id": {
-                                        "type": "string"
-                                    },
                                     "message_id": {
                                         "type": "integer"
                                     },
@@ -3265,13 +3259,7 @@
                                     "business_connection_id": {
                                         "type": "string"
                                     },
-                                    "exclude_from_blockchain": {
-                                        "type": "boolean"
-                                    },
-                                    "exclude_limited_non_upgradable": {
-                                        "type": "boolean"
-                                    },
-                                    "exclude_limited_upgradable": {
+                                    "exclude_limited": {
                                         "type": "boolean"
                                     },
                                     "exclude_saved": {
@@ -3532,93 +3520,6 @@
                                         },
                                         "result": {
                                             "$ref": "#/components/schemas/ChatMember"
-                                        }
-                                    },
-                                    "required": [
-                                        "ok",
-                                        "result"
-                                    ]
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/getChatGifts": {
-            "post": {
-                "summary": "getChatGifts",
-                "description": "Returns the gifts owned by a chat. Returns OwnedGifts on success.",
-                "operationId": "getChatGifts",
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "type": "object",
-                                "properties": {
-                                    "chat_id": {
-                                        "oneOf": [
-                                            {
-                                                "type": "integer"
-                                            },
-                                            {
-                                                "type": "string"
-                                            }
-                                        ]
-                                    },
-                                    "exclude_from_blockchain": {
-                                        "type": "boolean"
-                                    },
-                                    "exclude_limited_non_upgradable": {
-                                        "type": "boolean"
-                                    },
-                                    "exclude_limited_upgradable": {
-                                        "type": "boolean"
-                                    },
-                                    "exclude_saved": {
-                                        "type": "boolean"
-                                    },
-                                    "exclude_unique": {
-                                        "type": "boolean"
-                                    },
-                                    "exclude_unlimited": {
-                                        "type": "boolean"
-                                    },
-                                    "exclude_unsaved": {
-                                        "type": "boolean"
-                                    },
-                                    "limit": {
-                                        "type": "integer"
-                                    },
-                                    "offset": {
-                                        "type": "string"
-                                    },
-                                    "sort_by_price": {
-                                        "type": "boolean"
-                                    }
-                                },
-                                "required": [
-                                    "chat_id"
-                                ]
-                            }
-                        }
-                    },
-                    "required": true
-                },
-                "responses": {
-                    "200": {
-                        "description": "Successful response",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "ok": {
-                                            "type": "boolean",
-                                            "description": "Request success indicator"
-                                        },
-                                        "result": {
-                                            "$ref": "#/components/schemas/OwnedGifts"
                                         }
                                     },
                                     "required": [
@@ -4417,136 +4318,6 @@
                 }
             }
         },
-        "/getUserGifts": {
-            "post": {
-                "summary": "getUserGifts",
-                "description": "Returns the gifts owned and hosted by a user. Returns OwnedGifts on success.",
-                "operationId": "getUserGifts",
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "type": "object",
-                                "properties": {
-                                    "exclude_from_blockchain": {
-                                        "type": "boolean"
-                                    },
-                                    "exclude_limited_non_upgradable": {
-                                        "type": "boolean"
-                                    },
-                                    "exclude_limited_upgradable": {
-                                        "type": "boolean"
-                                    },
-                                    "exclude_unique": {
-                                        "type": "boolean"
-                                    },
-                                    "exclude_unlimited": {
-                                        "type": "boolean"
-                                    },
-                                    "limit": {
-                                        "type": "integer"
-                                    },
-                                    "offset": {
-                                        "type": "string"
-                                    },
-                                    "sort_by_price": {
-                                        "type": "boolean"
-                                    },
-                                    "user_id": {
-                                        "type": "integer"
-                                    }
-                                },
-                                "required": [
-                                    "user_id"
-                                ]
-                            }
-                        }
-                    },
-                    "required": true
-                },
-                "responses": {
-                    "200": {
-                        "description": "Successful response",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "ok": {
-                                            "type": "boolean",
-                                            "description": "Request success indicator"
-                                        },
-                                        "result": {
-                                            "$ref": "#/components/schemas/OwnedGifts"
-                                        }
-                                    },
-                                    "required": [
-                                        "ok",
-                                        "result"
-                                    ]
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/getUserProfileAudios": {
-            "post": {
-                "summary": "getUserProfileAudios",
-                "description": "Use this method to get a list of profile audios for a user. Returns a UserProfileAudios object.",
-                "operationId": "getUserProfileAudios",
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "type": "object",
-                                "properties": {
-                                    "limit": {
-                                        "type": "integer"
-                                    },
-                                    "offset": {
-                                        "type": "integer"
-                                    },
-                                    "user_id": {
-                                        "type": "integer"
-                                    }
-                                },
-                                "required": [
-                                    "user_id"
-                                ]
-                            }
-                        }
-                    },
-                    "required": true
-                },
-                "responses": {
-                    "200": {
-                        "description": "Successful response",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "ok": {
-                                            "type": "boolean",
-                                            "description": "Request success indicator"
-                                        },
-                                        "result": {
-                                            "$ref": "#/components/schemas/UserProfileAudios"
-                                        }
-                                    },
-                                    "required": [
-                                        "ok",
-                                        "result"
-                                    ]
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
         "/getUserProfilePhotos": {
             "post": {
                 "summary": "getUserProfilePhotos",
@@ -4969,9 +4740,6 @@
                                         "type": "boolean"
                                     },
                                     "can_manage_direct_messages": {
-                                        "type": "boolean"
-                                    },
-                                    "can_manage_tags": {
                                         "type": "boolean"
                                     },
                                     "can_manage_topics": {
@@ -5487,74 +5255,6 @@
                                         },
                                         "result": {
                                             "type": "boolean"
-                                        }
-                                    },
-                                    "required": [
-                                        "ok",
-                                        "result"
-                                    ]
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/repostStory": {
-            "post": {
-                "summary": "repostStory",
-                "description": "Reposts a story on behalf of a business account from another business account. Both business accounts must be managed by the same bot, and the story on the source account must have been posted (or reposted) by the bot. Requires the can_manage_stories business bot right for both business accounts. Returns Story on success.",
-                "operationId": "repostStory",
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "type": "object",
-                                "properties": {
-                                    "active_period": {
-                                        "type": "integer"
-                                    },
-                                    "business_connection_id": {
-                                        "type": "string"
-                                    },
-                                    "from_chat_id": {
-                                        "type": "integer"
-                                    },
-                                    "from_story_id": {
-                                        "type": "integer"
-                                    },
-                                    "post_to_chat_page": {
-                                        "type": "boolean"
-                                    },
-                                    "protect_content": {
-                                        "type": "boolean"
-                                    }
-                                },
-                                "required": [
-                                    "business_connection_id",
-                                    "from_chat_id",
-                                    "from_story_id",
-                                    "active_period"
-                                ]
-                            }
-                        }
-                    },
-                    "required": true
-                },
-                "responses": {
-                    "200": {
-                        "description": "Successful response",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "ok": {
-                                            "type": "boolean",
-                                            "description": "Request success indicator"
-                                        },
-                                        "result": {
-                                            "$ref": "#/components/schemas/Story"
                                         }
                                     },
                                     "required": [
@@ -7161,76 +6861,6 @@
                 }
             }
         },
-        "/sendMessageDraft": {
-            "post": {
-                "summary": "sendMessageDraft",
-                "description": "Use this method to stream a partial message to a user while the message is being generated. Returns True on success.",
-                "operationId": "sendMessageDraft",
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "type": "object",
-                                "properties": {
-                                    "chat_id": {
-                                        "type": "integer"
-                                    },
-                                    "draft_id": {
-                                        "type": "integer"
-                                    },
-                                    "entities": {
-                                        "type": "array",
-                                        "items": {
-                                            "$ref": "#/components/schemas/MessageEntity"
-                                        }
-                                    },
-                                    "message_thread_id": {
-                                        "type": "integer"
-                                    },
-                                    "parse_mode": {
-                                        "type": "string"
-                                    },
-                                    "text": {
-                                        "type": "string"
-                                    }
-                                },
-                                "required": [
-                                    "chat_id",
-                                    "draft_id",
-                                    "text"
-                                ]
-                            }
-                        }
-                    },
-                    "required": true
-                },
-                "responses": {
-                    "200": {
-                        "description": "Successful response",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "ok": {
-                                            "type": "boolean",
-                                            "description": "Request success indicator"
-                                        },
-                                        "result": {
-                                            "type": "boolean"
-                                        }
-                                    },
-                                    "required": [
-                                        "ok",
-                                        "result"
-                                    ]
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
         "/sendPaidMedia": {
             "post": {
                 "summary": "sendPaidMedia",
@@ -8639,70 +8269,6 @@
                 }
             }
         },
-        "/setChatMemberTag": {
-            "post": {
-                "summary": "setChatMemberTag",
-                "description": "Use this method to set a tag for a regular member in a group or a supergroup. The bot must be an administrator in the chat for this to work and must have the can_manage_tags administrator right. Returns True on success.",
-                "operationId": "setChatMemberTag",
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "type": "object",
-                                "properties": {
-                                    "chat_id": {
-                                        "oneOf": [
-                                            {
-                                                "type": "integer"
-                                            },
-                                            {
-                                                "type": "string"
-                                            }
-                                        ]
-                                    },
-                                    "tag": {
-                                        "type": "string"
-                                    },
-                                    "user_id": {
-                                        "type": "integer"
-                                    }
-                                },
-                                "required": [
-                                    "chat_id",
-                                    "user_id"
-                                ]
-                            }
-                        }
-                    },
-                    "required": true
-                },
-                "responses": {
-                    "200": {
-                        "description": "Successful response",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "ok": {
-                                            "type": "boolean",
-                                            "description": "Request success indicator"
-                                        },
-                                        "result": {
-                                            "type": "boolean"
-                                        }
-                                    },
-                                    "required": [
-                                        "ok",
-                                        "result"
-                                    ]
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
         "/setChatMenuButton": {
             "post": {
                 "summary": "setChatMenuButton",
@@ -9369,56 +8935,6 @@
                                         "type": "string"
                                     }
                                 }
-                            }
-                        }
-                    },
-                    "required": true
-                },
-                "responses": {
-                    "200": {
-                        "description": "Successful response",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "ok": {
-                                            "type": "boolean",
-                                            "description": "Request success indicator"
-                                        },
-                                        "result": {
-                                            "type": "boolean"
-                                        }
-                                    },
-                                    "required": [
-                                        "ok",
-                                        "result"
-                                    ]
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/setMyProfilePhoto": {
-            "post": {
-                "summary": "setMyProfilePhoto",
-                "description": "Changes the profile photo of the bot. Returns True on success.",
-                "operationId": "setMyProfilePhoto",
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "type": "object",
-                                "properties": {
-                                    "photo": {
-                                        "$ref": "#/components/schemas/InputProfilePhoto"
-                                    }
-                                },
-                                "required": [
-                                    "photo"
-                                ]
                             }
                         }
                     },
@@ -10510,7 +10026,7 @@
         "/unpinAllForumTopicMessages": {
             "post": {
                 "summary": "unpinAllForumTopicMessages",
-                "description": "Use this method to clear the list of pinned messages in a forum topic in a forum supergroup chat or a private chat with a user. In the case of a supergroup chat the bot must be an administrator in the chat for this to work and must have the can_pin_messages administrator right in the supergroup. Returns True on success.",
+                "description": "Use this method to clear the list of pinned messages in a forum topic. The bot must be an administrator in the chat for this to work and must have the can_pin_messages administrator right in the supergroup. Returns True on success.",
                 "operationId": "unpinAllForumTopicMessages",
                 "requestBody": {
                     "content": {
@@ -10925,10 +10441,6 @@
             "AcceptedGiftTypes": {
                 "type": "object",
                 "properties": {
-                    "gifts_from_channels": {
-                        "type": "boolean",
-                        "description": "True, if transfers of unique gifts from channels are accepted"
-                    },
                     "limited_gifts": {
                         "type": "boolean",
                         "description": "True, if limited regular gifts are accepted"
@@ -11692,10 +11204,6 @@
                         "type": "boolean",
                         "description": "Optional. True, if the administrator can manage direct messages of the channel and decline suggested posts; for channels only"
                     },
-                    "can_manage_tags": {
-                        "type": "boolean",
-                        "description": "Optional. True, if the administrator can edit the tags of regular members; for groups and supergroups only. If omitted defaults to the value of can_pin_messages."
-                    },
                     "can_manage_topics": {
                         "type": "boolean",
                         "description": "Optional. True, if the user is allowed to create, rename, close, and reopen forum topics; for supergroups only"
@@ -11955,10 +11463,6 @@
                         "type": "string",
                         "description": "Optional. First name of the other party in a private chat"
                     },
-                    "first_profile_audio": {
-                        "$ref": "#/components/schemas/Audio",
-                        "description": "Optional. For private chats, the first audio added to the profile of the user"
-                    },
                     "has_aggressive_anti_spam_enabled": {
                         "type": "boolean",
                         "description": "Optional. True, if aggressive anti-spam checks are enabled in the supergroup. The field is only available to chat administrators."
@@ -12027,10 +11531,6 @@
                         "type": "integer",
                         "description": "Optional. The time after which all messages sent to the chat will be automatically deleted; in seconds"
                     },
-                    "paid_message_star_count": {
-                        "type": "integer",
-                        "description": "Optional. The number of Telegram Stars a general user have to pay to send a message to the chat"
-                    },
                     "parent_chat": {
                         "$ref": "#/components/schemas/Chat",
                         "description": "Optional. Information about the corresponding channel chat; for direct messages chats only"
@@ -12059,10 +11559,6 @@
                         "type": "string",
                         "description": "Optional. Custom emoji identifier of the emoji chosen by the chat for its profile background"
                     },
-                    "rating": {
-                        "$ref": "#/components/schemas/UserRating",
-                        "description": "Optional. For private chats, the rating of the user if any"
-                    },
                     "slow_mode_delay": {
                         "type": "integer",
                         "description": "Optional. For supergroups, the minimum allowed delay between consecutive messages sent by each unprivileged user; in seconds"
@@ -12078,10 +11574,6 @@
                     "type": {
                         "type": "string",
                         "description": "Type of the chat, can be either “private”, “group”, “supergroup” or “channel”"
-                    },
-                    "unique_gift_colors": {
-                        "$ref": "#/components/schemas/UniqueGiftColors",
-                        "description": "Optional. The color scheme based on a unique gift that must be used for the chat's name, message replies and link previews"
                     },
                     "unrestrict_boost_count": {
                         "type": "integer",
@@ -12231,10 +11723,6 @@
                         "type": "boolean",
                         "description": "Optional. True, if the administrator can manage direct messages of the channel and decline suggested posts; for channels only"
                     },
-                    "can_manage_tags": {
-                        "type": "boolean",
-                        "description": "Optional. True, if the administrator can edit the tags of regular members; for groups and supergroups only. If omitted defaults to the value of can_pin_messages."
-                    },
                     "can_manage_topics": {
                         "type": "boolean",
                         "description": "Optional. True, if the user is allowed to create, rename, close, and reopen forum topics; for supergroups only"
@@ -12321,10 +11809,6 @@
                         "type": "string",
                         "description": "The member's status in the chat, always “member”"
                     },
-                    "tag": {
-                        "type": "string",
-                        "description": "Optional. Tag of the member"
-                    },
                     "until_date": {
                         "type": "integer",
                         "description": "Optional. Date when the user's subscription will expire; Unix time"
@@ -12368,10 +11852,6 @@
                     "can_change_info": {
                         "type": "boolean",
                         "description": "True, if the user is allowed to change the chat title, photo and other settings"
-                    },
-                    "can_edit_tag": {
-                        "type": "boolean",
-                        "description": "True, if the user is allowed to edit their own tag"
                     },
                     "can_invite_users": {
                         "type": "boolean",
@@ -12429,10 +11909,6 @@
                         "type": "string",
                         "description": "The member's status in the chat, always “restricted”"
                     },
-                    "tag": {
-                        "type": "string",
-                        "description": "Optional. Tag of the member"
-                    },
                     "until_date": {
                         "type": "integer",
                         "description": "Date when restrictions will be lifted for this user; Unix time. If 0, then the user is restricted forever"
@@ -12482,26 +11958,6 @@
                 },
                 "description": "This object represents changes in the status of a chat member.\n"
             },
-            "ChatOwnerChanged": {
-                "type": "object",
-                "properties": {
-                    "new_owner": {
-                        "$ref": "#/components/schemas/User",
-                        "description": "The new owner of the chat"
-                    }
-                },
-                "description": "Describes a service message about an ownership change in the chat.\n"
-            },
-            "ChatOwnerLeft": {
-                "type": "object",
-                "properties": {
-                    "new_owner": {
-                        "$ref": "#/components/schemas/User",
-                        "description": "Optional. The user which will be the new owner of the chat if the previous owner does not return to the chat"
-                    }
-                },
-                "description": "Describes a service message about the chat owner leaving the chat.\n"
-            },
             "ChatPermissions": {
                 "type": "object",
                 "properties": {
@@ -12512,10 +11968,6 @@
                     "can_change_info": {
                         "type": "boolean",
                         "description": "Optional. True, if the user is allowed to change the chat title, photo and other settings. Ignored in public supergroups"
-                    },
-                    "can_edit_tag": {
-                        "type": "boolean",
-                        "description": "Optional. True, if the user is allowed to edit their own tag"
                     },
                     "can_invite_users": {
                         "type": "boolean",
@@ -12654,13 +12106,9 @@
             "ChecklistTask": {
                 "type": "object",
                 "properties": {
-                    "completed_by_chat": {
-                        "$ref": "#/components/schemas/Chat",
-                        "description": "Optional. Chat that completed the task; omitted if the task wasn't completed by a chat"
-                    },
                     "completed_by_user": {
                         "$ref": "#/components/schemas/User",
-                        "description": "Optional. User that completed the task; omitted if the task wasn't completed by a user"
+                        "description": "Optional. User that completed the task; omitted if the task wasn't completed"
                     },
                     "completion_date": {
                         "type": "integer",
@@ -12820,7 +12268,7 @@
                 "properties": {
                     "topic_id": {
                         "type": "integer",
-                        "description": "Unique identifier of the topic. This number may have more than 32 significant bits and some programming languages may have difficulty/silent defects in interpreting it. But it has at most 52 significant bits, so a 64-bit integer or double-precision float type are safe for storing this identifier."
+                        "description": "Unique identifier of the topic"
                     },
                     "user": {
                         "$ref": "#/components/schemas/User",
@@ -13089,10 +12537,6 @@
                         "type": "string",
                         "description": "Optional. Unique identifier of the custom emoji shown as the topic icon"
                     },
-                    "is_name_implicit": {
-                        "type": "boolean",
-                        "description": "Optional. True, if the name of the topic wasn't specified explicitly by its creator and likely needs to be changed by the bot"
-                    },
                     "message_thread_id": {
                         "type": "integer",
                         "description": "Unique identifier of the forum topic"
@@ -13118,10 +12562,6 @@
                     "icon_custom_emoji_id": {
                         "type": "string",
                         "description": "Optional. Unique identifier of the custom emoji shown as the topic icon"
-                    },
-                    "is_name_implicit": {
-                        "type": "boolean",
-                        "description": "Optional. True, if the name of the topic wasn't specified explicitly by its creator and likely needs to be changed by the bot"
                     },
                     "name": {
                         "type": "string",
@@ -13213,29 +12653,9 @@
             "Gift": {
                 "type": "object",
                 "properties": {
-                    "background": {
-                        "$ref": "#/components/schemas/GiftBackground",
-                        "description": "Optional. Background of the gift"
-                    },
-                    "has_colors": {
-                        "type": "boolean",
-                        "description": "Optional. True, if the gift can be used (after being upgraded) to customize a user's appearance"
-                    },
                     "id": {
                         "type": "string",
                         "description": "Unique identifier of the gift"
-                    },
-                    "is_premium": {
-                        "type": "boolean",
-                        "description": "Optional. True, if the gift can only be purchased by Telegram Premium subscribers"
-                    },
-                    "personal_remaining_count": {
-                        "type": "integer",
-                        "description": "Optional. The number of remaining gifts of this type that can be sent by the bot; for limited gifts only"
-                    },
-                    "personal_total_count": {
-                        "type": "integer",
-                        "description": "Optional. The total number of gifts of this type that can be sent by the bot; for limited gifts only"
                     },
                     "publisher_chat": {
                         "$ref": "#/components/schemas/Chat",
@@ -13243,7 +12663,7 @@
                     },
                     "remaining_count": {
                         "type": "integer",
-                        "description": "Optional. The number of remaining gifts of this type that can be sent by all users; for limited gifts only"
+                        "description": "Optional. The number of remaining gifts of this type that can be sent; for limited gifts only"
                     },
                     "star_count": {
                         "type": "integer",
@@ -13255,11 +12675,7 @@
                     },
                     "total_count": {
                         "type": "integer",
-                        "description": "Optional. The total number of gifts of this type that can be sent by all users; for limited gifts only"
-                    },
-                    "unique_gift_variant_count": {
-                        "type": "integer",
-                        "description": "Optional. The total number of different unique gifts that can be obtained by upgrading the gift"
+                        "description": "Optional. The total number of the gifts of this type that can be sent; for limited gifts only"
                     },
                     "upgrade_star_count": {
                         "type": "integer",
@@ -13267,24 +12683,6 @@
                     }
                 },
                 "description": "This object represents a gift that can be sent by the bot.\n"
-            },
-            "GiftBackground": {
-                "type": "object",
-                "properties": {
-                    "center_color": {
-                        "type": "integer",
-                        "description": "Center color of the background in RGB format"
-                    },
-                    "edge_color": {
-                        "type": "integer",
-                        "description": "Edge color of the background in RGB format"
-                    },
-                    "text_color": {
-                        "type": "integer",
-                        "description": "Text color of the background in RGB format"
-                    }
-                },
-                "description": "This object describes the background of a gift.\n"
             },
             "GiftInfo": {
                 "type": "object",
@@ -13312,25 +12710,17 @@
                         "type": "boolean",
                         "description": "Optional. True, if the sender and gift text are shown only to the gift receiver; otherwise, everyone will be able to see them"
                     },
-                    "is_upgrade_separate": {
-                        "type": "boolean",
-                        "description": "Optional. True, if the gift's upgrade was purchased after the gift was sent"
-                    },
                     "owned_gift_id": {
                         "type": "string",
                         "description": "Optional. Unique identifier of the received gift for the bot; only present for gifts received on behalf of business accounts"
                     },
                     "prepaid_upgrade_star_count": {
                         "type": "integer",
-                        "description": "Optional. Number of Telegram Stars that were prepaid for the ability to upgrade the gift"
+                        "description": "Optional. Number of Telegram Stars that were prepaid by the sender for the ability to upgrade the gift"
                     },
                     "text": {
                         "type": "string",
                         "description": "Optional. Text of the message that was added to the gift"
-                    },
-                    "unique_gift_number": {
-                        "type": "integer",
-                        "description": "Optional. Unique number reserved for this gift when upgraded. See the number field in UniqueGift"
                     }
                 },
                 "description": "Describes a service message about a regular gift that was sent or received.\n"
@@ -13518,10 +12908,6 @@
                         "$ref": "#/components/schemas/CopyTextButton",
                         "description": "Optional. Description of the button that copies the specified text to the clipboard."
                     },
-                    "icon_custom_emoji_id": {
-                        "type": "string",
-                        "description": "Optional. Unique identifier of the custom emoji shown before the text of the button. Can only be used by bots that purchased additional usernames on Fragment or in the messages directly sent by the bot to private, group and supergroup chats if the owner of the bot has a Telegram Premium subscription."
-                    },
                     "login_url": {
                         "$ref": "#/components/schemas/LoginUrl",
                         "description": "Optional. An HTTPS URL used to automatically authorize the user. Can be used as a replacement for the Telegram Login Widget."
@@ -13529,10 +12915,6 @@
                     "pay": {
                         "type": "boolean",
                         "description": "Optional. Specify True, to send a Pay button. Substrings “” and “XTR” in the buttons's text will be replaced with a Telegram Star icon.NOTE: This type of button must always be the first button in the first row and can only be used in invoice messages."
-                    },
-                    "style": {
-                        "type": "string",
-                        "description": "Optional. Style of the button. Must be one of “danger” (red), “success” (green) or “primary” (blue). If omitted, then an app-specific style is used."
                     },
                     "switch_inline_query": {
                         "type": "string",
@@ -13559,7 +12941,7 @@
                         "description": "Optional. Description of the Web App that will be launched when the user presses the button. The Web App will be able to send an arbitrary message on behalf of the user using the method answerWebAppQuery. Available only in private chats between a user and the bot. Not supported for messages sent on behalf of a Telegram Business account."
                     }
                 },
-                "description": "This object represents one button of an inline keyboard. Exactly one of the fields other than text, icon_custom_emoji_id, and style must be used to specify the type of the button.\n"
+                "description": "This object represents one button of an inline keyboard. Exactly one of the optional fields must be used to specify type of the button.\n"
             },
             "InlineKeyboardMarkup": {
                 "type": "object",
@@ -15463,10 +14845,6 @@
             "KeyboardButton": {
                 "type": "object",
                 "properties": {
-                    "icon_custom_emoji_id": {
-                        "type": "string",
-                        "description": "Optional. Unique identifier of the custom emoji shown before the text of the button. Can only be used by bots that purchased additional usernames on Fragment or in the messages directly sent by the bot to private, group and supergroup chats if the owner of the bot has a Telegram Premium subscription."
-                    },
                     "request_chat": {
                         "$ref": "#/components/schemas/KeyboardButtonRequestChat",
                         "description": "Optional. If specified, pressing the button will open a list of suitable chats. Tapping on a chat will send its identifier to the bot in a “chat_shared” service message. Available in private chats only."
@@ -15487,20 +14865,16 @@
                         "$ref": "#/components/schemas/KeyboardButtonRequestUsers",
                         "description": "Optional. If specified, pressing the button will open a list of suitable users. Identifiers of selected users will be sent to the bot in a “users_shared” service message. Available in private chats only."
                     },
-                    "style": {
-                        "type": "string",
-                        "description": "Optional. Style of the button. Must be one of “danger” (red), “success” (green) or “primary” (blue). If omitted, then an app-specific style is used."
-                    },
                     "text": {
                         "type": "string",
-                        "description": "Text of the button. If none of the fields other than text, icon_custom_emoji_id, and style are used, it will be sent as a message when the button is pressed"
+                        "description": "Text of the button. If none of the optional fields are used, it will be sent as a message when the button is pressed"
                     },
                     "web_app": {
                         "$ref": "#/components/schemas/WebAppInfo",
                         "description": "Optional. If specified, the described Web App will be launched when the button is pressed. The Web App will be able to send a “web_app_data” service message. Available in private chats only."
                     }
                 },
-                "description": "This object represents one button of the reply keyboard. At most one of the fields other than text, icon_custom_emoji_id, and style must be used to specify the type of the button. For simple text buttons, String can be used instead of this object to specify the button text.\n"
+                "description": "This object represents one button of the reply keyboard. At most one of the optional fields must be used to specify type of the button. For simple text buttons, String can be used instead of this object to specify the button text.\n"
             },
             "KeyboardButtonPollType": {
                 "type": "object",
@@ -15843,14 +15217,6 @@
                         "$ref": "#/components/schemas/ChatBackground",
                         "description": "Optional. Service message: chat background set"
                     },
-                    "chat_owner_changed": {
-                        "$ref": "#/components/schemas/ChatOwnerChanged",
-                        "description": "Optional. Service message: chat owner has changed"
-                    },
-                    "chat_owner_left": {
-                        "$ref": "#/components/schemas/ChatOwnerLeft",
-                        "description": "Optional. Service message: chat owner has left"
-                    },
                     "chat_shared": {
                         "$ref": "#/components/schemas/ChatShared",
                         "description": "Optional. Service message: a chat was shared with the bot"
@@ -15958,10 +15324,6 @@
                         "$ref": "#/components/schemas/GiftInfo",
                         "description": "Optional. Service message: a regular gift was sent or received"
                     },
-                    "gift_upgrade_sent": {
-                        "$ref": "#/components/schemas/GiftInfo",
-                        "description": "Optional. Service message: upgrade of a gift was purchased after the gift was sent"
-                    },
                     "giveaway": {
                         "$ref": "#/components/schemas/Giveaway",
                         "description": "Optional. The message is a scheduled giveaway message"
@@ -16008,7 +15370,7 @@
                     },
                     "is_topic_message": {
                         "type": "boolean",
-                        "description": "Optional. True, if the message is sent to a topic in a forum supergroup or a private chat with the bot"
+                        "description": "Optional. True, if the message is sent to a forum topic"
                     },
                     "left_chat_member": {
                         "$ref": "#/components/schemas/User",
@@ -16024,7 +15386,7 @@
                     },
                     "media_group_id": {
                         "type": "string",
-                        "description": "Optional. The unique identifier inside this chat of a media message group this message belongs to"
+                        "description": "Optional. The unique identifier of a media message group this message belongs to"
                     },
                     "message_auto_delete_timer_changed": {
                         "$ref": "#/components/schemas/MessageAutoDeleteTimerChanged",
@@ -16036,7 +15398,7 @@
                     },
                     "message_thread_id": {
                         "type": "integer",
-                        "description": "Optional. Unique identifier of a message thread or forum topic to which the message belongs; for supergroups and private chats only"
+                        "description": "Optional. Unique identifier of a message thread to which the message belongs; for supergroups only"
                     },
                     "migrate_from_chat_id": {
                         "type": "integer",
@@ -16134,10 +15496,6 @@
                     "sender_chat": {
                         "$ref": "#/components/schemas/Chat",
                         "description": "Optional. Sender of the message when sent on behalf of a chat. For example, the supergroup itself for messages sent by its anonymous administrators or a linked channel for messages automatically forwarded to the channel's discussion group. For backward compatibility, if the message was sent on behalf of a chat, the field from contains a fake sender user in non-channel chats."
-                    },
-                    "sender_tag": {
-                        "type": "string",
-                        "description": "Optional. Tag or custom title of the sender of the message; for supergroups only"
                     },
                     "show_caption_above_media": {
                         "type": "boolean",
@@ -16259,10 +15617,6 @@
                         "type": "string",
                         "description": "Optional. For “custom_emoji” only, unique identifier of the custom emoji. Use getCustomEmojiStickers to get full information about the sticker"
                     },
-                    "date_time_format": {
-                        "type": "string",
-                        "description": "Optional. For “date_time” only, the string that defines the formatting of the date and time. See date-time entity formatting for more details."
-                    },
                     "language": {
                         "type": "string",
                         "description": "Optional. For “pre” only, the programming language of the entity text"
@@ -16277,11 +15631,7 @@
                     },
                     "type": {
                         "type": "string",
-                        "description": "Type of the entity. Currently, can be “mention” (@username), “hashtag” (#hashtag or #hashtag@chatusername), “cashtag” ($USD or $USD@chatusername), “bot_command” (/start@jobs_bot), “url” (https://telegram.org), “email” (do-not-reply@telegram.org), “phone_number” (+1-212-555-0123), “bold” (bold text), “italic” (italic text), “underline” (underlined text), “strikethrough” (strikethrough text), “spoiler” (spoiler message), “blockquote” (block quotation), “expandable_blockquote” (collapsed-by-default block quotation), “code” (monowidth string), “pre” (monowidth block), “text_link” (for clickable text URLs), “text_mention” (for users without usernames), “custom_emoji” (for inline custom emoji stickers), or “date_time” (for formatted date and time)"
-                    },
-                    "unix_time": {
-                        "type": "integer",
-                        "description": "Optional. For “date_time” only, the Unix time associated with the entity"
+                        "description": "Type of the entity. Currently, can be “mention” (@username), “hashtag” (#hashtag or #hashtag@chatusername), “cashtag” ($USD or $USD@chatusername), “bot_command” (/start@jobs_bot), “url” (https://telegram.org), “email” (do-not-reply@telegram.org), “phone_number” (+1-212-555-0123), “bold” (bold text), “italic” (italic text), “underline” (underlined text), “strikethrough” (strikethrough text), “spoiler” (spoiler message), “blockquote” (block quotation), “expandable_blockquote” (collapsed-by-default block quotation), “code” (monowidth string), “pre” (monowidth block), “text_link” (for clickable text URLs), “text_mention” (for users without usernames), “custom_emoji” (for inline custom emoji stickers)"
                     },
                     "url": {
                         "type": "string",
@@ -16514,7 +15864,7 @@
                     },
                     "convert_star_count": {
                         "type": "integer",
-                        "description": "Optional. Number of Telegram Stars that can be claimed by the receiver instead of the gift; omitted if the gift cannot be converted to Telegram Stars; for gifts received on behalf of business accounts only"
+                        "description": "Optional. Number of Telegram Stars that can be claimed by the receiver instead of the gift; omitted if the gift cannot be converted to Telegram Stars"
                     },
                     "entities": {
                         "type": "array",
@@ -16535,17 +15885,13 @@
                         "type": "boolean",
                         "description": "Optional. True, if the gift is displayed on the account's profile page; for gifts received on behalf of business accounts only"
                     },
-                    "is_upgrade_separate": {
-                        "type": "boolean",
-                        "description": "Optional. True, if the gift's upgrade was purchased after the gift was sent; for gifts received on behalf of business accounts only"
-                    },
                     "owned_gift_id": {
                         "type": "string",
                         "description": "Optional. Unique identifier of the gift for the bot; for gifts received on behalf of business accounts only"
                     },
                     "prepaid_upgrade_star_count": {
                         "type": "integer",
-                        "description": "Optional. Number of Telegram Stars that were paid for the ability to upgrade the gift"
+                        "description": "Optional. Number of Telegram Stars that were paid by the sender for the ability to upgrade the gift"
                     },
                     "send_date": {
                         "type": "integer",
@@ -16562,10 +15908,6 @@
                     "type": {
                         "type": "string",
                         "description": "Type of the gift, always “regular”"
-                    },
-                    "unique_gift_number": {
-                        "type": "integer",
-                        "description": "Optional. Unique number reserved for this gift when upgraded. See the number field in UniqueGift"
                     },
                     "was_refunded": {
                         "type": "boolean",
@@ -18088,7 +17430,7 @@
                         "description": "Currency in which the post will be paid. Currently, must be one of “XTR” for Telegram Stars or “TON” for toncoins"
                     }
                 },
-                "description": "Describes the price of a suggested post.\n"
+                "description": "Desribes price of a suggested post.\n"
             },
             "SuggestedPostRefunded": {
                 "type": "object",
@@ -18326,26 +17668,6 @@
                         "type": "string",
                         "description": "Human-readable name of the regular gift from which this unique gift was upgraded"
                     },
-                    "colors": {
-                        "$ref": "#/components/schemas/UniqueGiftColors",
-                        "description": "Optional. The color scheme that can be used by the gift's owner for the chat's name, replies to messages and link previews; for business account gifts and gifts that are currently on sale only"
-                    },
-                    "gift_id": {
-                        "type": "string",
-                        "description": "Identifier of the regular gift from which the gift was upgraded"
-                    },
-                    "is_burned": {
-                        "type": "boolean",
-                        "description": "Optional. True, if the gift was used to craft another gift and isn't available anymore"
-                    },
-                    "is_from_blockchain": {
-                        "type": "boolean",
-                        "description": "Optional. True, if the gift is assigned from the TON blockchain and can't be resold or transferred in Telegram"
-                    },
-                    "is_premium": {
-                        "type": "boolean",
-                        "description": "Optional. True, if the original regular gift was exclusively purchaseable by Telegram Premium subscribers"
-                    },
                     "model": {
                         "$ref": "#/components/schemas/UniqueGiftModel",
                         "description": "Model of the gift"
@@ -18409,42 +17731,6 @@
                 },
                 "description": "This object describes the colors of the backdrop of a unique gift.\n"
             },
-            "UniqueGiftColors": {
-                "type": "object",
-                "properties": {
-                    "dark_theme_main_color": {
-                        "type": "integer",
-                        "description": "Main color used in dark themes; RGB format"
-                    },
-                    "dark_theme_other_colors": {
-                        "type": "array",
-                        "items": {
-                            "type": "integer"
-                        },
-                        "description": "List of 1-3 additional colors used in dark themes; RGB format"
-                    },
-                    "light_theme_main_color": {
-                        "type": "integer",
-                        "description": "Main color used in light themes; RGB format"
-                    },
-                    "light_theme_other_colors": {
-                        "type": "array",
-                        "items": {
-                            "type": "integer"
-                        },
-                        "description": "List of 1-3 additional colors used in light themes; RGB format"
-                    },
-                    "model_custom_emoji_id": {
-                        "type": "string",
-                        "description": "Custom emoji identifier of the unique gift's model"
-                    },
-                    "symbol_custom_emoji_id": {
-                        "type": "string",
-                        "description": "Custom emoji identifier of the unique gift's symbol"
-                    }
-                },
-                "description": "This object contains information about the color scheme for a user's name, message replies and link previews based on a unique gift.\n"
-            },
             "UniqueGiftInfo": {
                 "type": "object",
                 "properties": {
@@ -18452,13 +17738,9 @@
                         "$ref": "#/components/schemas/UniqueGift",
                         "description": "Information about the gift"
                     },
-                    "last_resale_amount": {
+                    "last_resale_star_count": {
                         "type": "integer",
-                        "description": "Optional. For gifts bought from other users, the price paid for the gift in either Telegram Stars or nanotoncoins"
-                    },
-                    "last_resale_currency": {
-                        "type": "string",
-                        "description": "Optional. For gifts bought from other users, the currency in which the payment for the gift was done. Currently, one of “XTR” for Telegram Stars or “TON” for toncoins."
+                        "description": "Optional. For gifts bought from other users, the price paid for the gift"
                     },
                     "next_transfer_date": {
                         "type": "integer",
@@ -18466,7 +17748,7 @@
                     },
                     "origin": {
                         "type": "string",
-                        "description": "Origin of the gift. Currently, either “upgrade” for gifts upgraded from regular gifts, “transfer” for gifts transferred from other users or channels, “resale” for gifts bought from other users, “gifted_upgrade” for upgrades purchased after the gift was sent, or “offer” for gifts bought or sold through gift purchase offers"
+                        "description": "Origin of the gift. Currently, either “upgrade” for gifts upgraded from regular gifts, “transfer” for gifts transferred from other users or channels, or “resale” for gifts bought from other users"
                     },
                     "owned_gift_id": {
                         "type": "string",
@@ -18486,13 +17768,9 @@
                         "type": "string",
                         "description": "Name of the model"
                     },
-                    "rarity": {
-                        "type": "string",
-                        "description": "Optional. Rarity of the model if it is a crafted model. Currently, can be “uncommon”, “rare”, “epic”, or “legendary”."
-                    },
                     "rarity_per_mille": {
                         "type": "integer",
-                        "description": "The number of unique gifts that receive this model for every 1000 gift upgrades. Always 0 for crafted gifts."
+                        "description": "The number of unique gifts that receive this model for every 1000 gifts upgraded"
                     },
                     "sticker": {
                         "$ref": "#/components/schemas/Sticker",
@@ -18628,10 +17906,6 @@
                         "type": "boolean",
                         "description": "Optional. True, if this user added the bot to the attachment menu"
                     },
-                    "allows_users_to_create_topics": {
-                        "type": "boolean",
-                        "description": "Optional. True, if the bot allows users to create and delete topics in private chats. Returned only in getMe."
-                    },
                     "can_connect_to_business": {
                         "type": "boolean",
                         "description": "Optional. True, if the bot can be connected to a Telegram Business account to receive its messages. Returned only in getMe."
@@ -18651,10 +17925,6 @@
                     "has_main_web_app": {
                         "type": "boolean",
                         "description": "Optional. True, if the bot has a main Web App. Returned only in getMe."
-                    },
-                    "has_topics_enabled": {
-                        "type": "boolean",
-                        "description": "Optional. True, if the bot has forum topic mode enabled in private chats. Returned only in getMe."
                     },
                     "id": {
                         "type": "integer",
@@ -18700,23 +17970,6 @@
                 },
                 "description": "This object represents a list of boosts added to a chat by a user.\n"
             },
-            "UserProfileAudios": {
-                "type": "object",
-                "properties": {
-                    "audios": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/components/schemas/Audio"
-                        },
-                        "description": "Requested profile audios"
-                    },
-                    "total_count": {
-                        "type": "integer",
-                        "description": "Total number of profile audios for the target user"
-                    }
-                },
-                "description": "This object represents the audios displayed on a user's profile.\n"
-            },
             "UserProfilePhotos": {
                 "type": "object",
                 "properties": {
@@ -18736,28 +17989,6 @@
                     }
                 },
                 "description": "This object represent a user's profile pictures.\n"
-            },
-            "UserRating": {
-                "type": "object",
-                "properties": {
-                    "current_level_rating": {
-                        "type": "integer",
-                        "description": "The rating value required to get the current level"
-                    },
-                    "level": {
-                        "type": "integer",
-                        "description": "Current level of the user, indicating their reliability when purchasing digital goods and services. A higher level suggests a more trustworthy customer; a negative level is likely reason for concern."
-                    },
-                    "next_level_rating": {
-                        "type": "integer",
-                        "description": "Optional. The rating value required to get to the next level; omitted if the maximum level was reached"
-                    },
-                    "rating": {
-                        "type": "integer",
-                        "description": "Numerical value of the user's rating; the higher the rating, the better"
-                    }
-                },
-                "description": "This object describes the rating of a user based on their Telegram Star spendings.\n"
             },
             "UsersShared": {
                 "type": "object",
@@ -18848,13 +18079,6 @@
                         "type": "string",
                         "description": "Optional. MIME type of the file as defined by the sender"
                     },
-                    "qualities": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/components/schemas/VideoQuality"
-                        },
-                        "description": "Optional. List of available qualities of the video"
-                    },
                     "start_timestamp": {
                         "type": "integer",
                         "description": "Optional. Timestamp in seconds from which the video will play in the message"
@@ -18936,36 +18160,6 @@
                     }
                 },
                 "description": "This object represents a video message (available in Telegram apps as of v.4.0).\n"
-            },
-            "VideoQuality": {
-                "type": "object",
-                "properties": {
-                    "codec": {
-                        "type": "string",
-                        "description": "Codec that was used to encode the video, for example, “h264”, “h265”, or “av01”"
-                    },
-                    "file_id": {
-                        "type": "string",
-                        "description": "Identifier for this file, which can be used to download or reuse the file"
-                    },
-                    "file_size": {
-                        "type": "integer",
-                        "description": "Optional. File size in bytes. It can be bigger than 2^31 and some programming languages may have difficulty/silent defects in interpreting it. But it has at most 52 significant bits, so a signed 64-bit integer or double-precision float type are safe for storing this value."
-                    },
-                    "file_unique_id": {
-                        "type": "string",
-                        "description": "Unique identifier for this file, which is supposed to be the same over time and for different bots. Can't be used to download or reuse the file."
-                    },
-                    "height": {
-                        "type": "integer",
-                        "description": "Video height"
-                    },
-                    "width": {
-                        "type": "integer",
-                        "description": "Video width"
-                    }
-                },
-                "description": "This object represents a video file of a specific quality.\n"
             },
             "Voice": {
                 "type": "object",
