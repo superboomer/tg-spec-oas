@@ -3,7 +3,7 @@
     "info": {
         "title": "Telegram Bot API",
         "description": "The Bot API is an HTTP-based interface created for developers keen on building bots for Telegram.\\nTo learn how to create and set up a bot, please consult [Introduction to Bots](https://core.telegram.org/bots) and [Bot FAQ](https://core.telegram.org/bots/faq).",
-        "version": "9.6"
+        "version": "9.5"
     },
     "servers": [
         {
@@ -3959,56 +3959,6 @@
                 }
             }
         },
-        "/getManagedBotToken": {
-            "post": {
-                "summary": "getManagedBotToken",
-                "description": "Use this method to get the token of a managed bot. Returns the token as String on success.",
-                "operationId": "getManagedBotToken",
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "type": "object",
-                                "properties": {
-                                    "user_id": {
-                                        "type": "integer"
-                                    }
-                                },
-                                "required": [
-                                    "user_id"
-                                ]
-                            }
-                        }
-                    },
-                    "required": true
-                },
-                "responses": {
-                    "200": {
-                        "description": "Successful response",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "ok": {
-                                            "type": "boolean",
-                                            "description": "Request success indicator"
-                                        },
-                                        "result": {
-                                            "type": "boolean"
-                                        }
-                                    },
-                                    "required": [
-                                        "ok",
-                                        "result"
-                                    ]
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
         "/getMyCommands": {
             "post": {
                 "summary": "getMyCommands",
@@ -5488,56 +5438,6 @@
                 }
             }
         },
-        "/replaceManagedBotToken": {
-            "post": {
-                "summary": "replaceManagedBotToken",
-                "description": "Use this method to revoke the current token of a managed bot and generate a new one. Returns the new token as String on success.",
-                "operationId": "replaceManagedBotToken",
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "type": "object",
-                                "properties": {
-                                    "user_id": {
-                                        "type": "integer"
-                                    }
-                                },
-                                "required": [
-                                    "user_id"
-                                ]
-                            }
-                        }
-                    },
-                    "required": true
-                },
-                "responses": {
-                    "200": {
-                        "description": "Successful response",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "ok": {
-                                            "type": "boolean",
-                                            "description": "Request success indicator"
-                                        },
-                                        "result": {
-                                            "type": "boolean"
-                                        }
-                                    },
-                                    "required": [
-                                        "ok",
-                                        "result"
-                                    ]
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
         "/replaceStickerInSet": {
             "post": {
                 "summary": "replaceStickerInSet",
@@ -5853,60 +5753,6 @@
                                         },
                                         "result": {
                                             "$ref": "#/components/schemas/PreparedInlineMessage"
-                                        }
-                                    },
-                                    "required": [
-                                        "ok",
-                                        "result"
-                                    ]
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/savePreparedKeyboardButton": {
-            "post": {
-                "summary": "savePreparedKeyboardButton",
-                "description": "Stores a keyboard button that can be used by a user within a Mini App. Returns a PreparedKeyboardButton object.",
-                "operationId": "savePreparedKeyboardButton",
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "type": "object",
-                                "properties": {
-                                    "button": {
-                                        "$ref": "#/components/schemas/KeyboardButton"
-                                    },
-                                    "user_id": {
-                                        "type": "integer"
-                                    }
-                                },
-                                "required": [
-                                    "user_id",
-                                    "button"
-                                ]
-                            }
-                        }
-                    },
-                    "required": true
-                },
-                "responses": {
-                    "200": {
-                        "description": "Successful response",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "ok": {
-                                            "type": "boolean",
-                                            "description": "Request success indicator"
-                                        },
-                                        "result": {
-                                            "$ref": "#/components/schemas/PreparedKeyboardButton"
                                         }
                                     },
                                     "required": [
@@ -7644,16 +7490,10 @@
                             "schema": {
                                 "type": "object",
                                 "properties": {
-                                    "allow_adding_options": {
-                                        "type": "boolean"
-                                    },
                                     "allow_paid_broadcast": {
                                         "type": "boolean"
                                     },
                                     "allows_multiple_answers": {
-                                        "type": "boolean"
-                                    },
-                                    "allows_revoting": {
                                         "type": "boolean"
                                     },
                                     "business_connection_id": {
@@ -7672,23 +7512,8 @@
                                     "close_date": {
                                         "type": "integer"
                                     },
-                                    "correct_option_ids": {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "integer"
-                                        }
-                                    },
-                                    "description": {
-                                        "type": "string"
-                                    },
-                                    "description_entities": {
-                                        "type": "array",
-                                        "items": {
-                                            "$ref": "#/components/schemas/MessageEntity"
-                                        }
-                                    },
-                                    "description_parse_mode": {
-                                        "type": "string"
+                                    "correct_option_id": {
+                                        "type": "integer"
                                     },
                                     "disable_notification": {
                                         "type": "boolean"
@@ -7704,9 +7529,6 @@
                                     },
                                     "explanation_parse_mode": {
                                         "type": "string"
-                                    },
-                                    "hide_results_until_closes": {
-                                        "type": "boolean"
                                     },
                                     "is_anonymous": {
                                         "type": "boolean"
@@ -7762,9 +7584,6 @@
                                     },
                                     "reply_parameters": {
                                         "$ref": "#/components/schemas/ReplyParameters"
-                                    },
-                                    "shuffle_options": {
-                                        "type": "boolean"
                                     },
                                     "type": {
                                         "type": "string"
@@ -14895,7 +14714,7 @@
                         "items": {
                             "$ref": "#/components/schemas/MessageEntity"
                         },
-                        "description": "Optional. List of special entities that appear in the title, which can be specified instead of parse_mode. Currently, only bold, italic, underline, strikethrough, spoiler, custom_emoji, and date_time entities are allowed."
+                        "description": "Optional. List of special entities that appear in the title, which can be specified instead of parse_mode. Currently, only bold, italic, underline, strikethrough, spoiler, and custom_emoji entities are allowed."
                     }
                 },
                 "description": "Describes a checklist to create.\n"
@@ -14920,7 +14739,7 @@
                         "items": {
                             "$ref": "#/components/schemas/MessageEntity"
                         },
-                        "description": "Optional. List of special entities that appear in the text, which can be specified instead of parse_mode. Currently, only bold, italic, underline, strikethrough, spoiler, custom_emoji, and date_time entities are allowed."
+                        "description": "Optional. List of special entities that appear in the text, which can be specified instead of parse_mode. Currently, only bold, italic, underline, strikethrough, spoiler, and custom_emoji entities are allowed."
                     }
                 },
                 "description": "Describes a task to add to a checklist.\n"
@@ -15660,10 +15479,6 @@
                         "type": "boolean",
                         "description": "Optional. If True, the user's current location will be sent when the button is pressed. Available in private chats only."
                     },
-                    "request_managed_bot": {
-                        "$ref": "#/components/schemas/KeyboardButtonRequestManagedBot",
-                        "description": "Optional. If specified, pressing the button will ask the user to create and share a bot that will be managed by the current bot. Available for bots that enabled management of other bots in the @BotFather Mini App. Available in private chats only."
-                    },
                     "request_poll": {
                         "$ref": "#/components/schemas/KeyboardButtonPollType",
                         "description": "Optional. If specified, the user will be asked to create a poll and send it to the bot when the button is pressed. Available in private chats only."
@@ -15746,24 +15561,6 @@
                     }
                 },
                 "description": "This object defines the criteria used to request a suitable chat. Information about the selected chat will be shared with the bot when the corresponding button is pressed. The bot will be granted requested rights in the chat if appropriate. More about requesting chats ».\n"
-            },
-            "KeyboardButtonRequestManagedBot": {
-                "type": "object",
-                "properties": {
-                    "request_id": {
-                        "type": "integer",
-                        "description": "Signed 32-bit identifier of the request. Must be unique within the message"
-                    },
-                    "suggested_name": {
-                        "type": "string",
-                        "description": "Optional. Suggested name for the bot"
-                    },
-                    "suggested_username": {
-                        "type": "string",
-                        "description": "Optional. Suggested username for the bot"
-                    }
-                },
-                "description": "This object defines the parameters for the creation of a managed bot. Information about the created bot will be shared with the bot using the update managed_bot and a Message with the field managed_bot_created.\n"
             },
             "KeyboardButtonRequestUsers": {
                 "type": "object",
@@ -15912,30 +15709,6 @@
                     }
                 },
                 "description": "This object represents a parameter of the inline keyboard button used to automatically authorize a user. Serves as a great replacement for the Telegram Login Widget when the user is coming from Telegram. All the user needs to do is tap/click a button and confirm that they want to log in:\nTelegram apps support these buttons as of version 5.7.\n"
-            },
-            "ManagedBotCreated": {
-                "type": "object",
-                "properties": {
-                    "bot": {
-                        "$ref": "#/components/schemas/User",
-                        "description": "Information about the bot. The bot's token can be fetched using the method getManagedBotToken."
-                    }
-                },
-                "description": "This object contains information about the bot that was created to be managed by the current bot.\n"
-            },
-            "ManagedBotUpdated": {
-                "type": "object",
-                "properties": {
-                    "bot": {
-                        "$ref": "#/components/schemas/User",
-                        "description": "Information about the bot. Token of the bot can be fetched using the method getManagedBotToken."
-                    },
-                    "user": {
-                        "$ref": "#/components/schemas/User",
-                        "description": "User that created the bot"
-                    }
-                },
-                "description": "This object contains information about the creation or token update of a bot that is managed by the current bot.\n"
             },
             "MaskPosition": {
                 "type": "object",
@@ -16249,10 +16022,6 @@
                         "$ref": "#/components/schemas/Location",
                         "description": "Optional. Message is a shared location, information about the location"
                     },
-                    "managed_bot_created": {
-                        "$ref": "#/components/schemas/ManagedBotCreated",
-                        "description": "Optional. Service message: user created a bot that will be managed by the current bot"
-                    },
                     "media_group_id": {
                         "type": "string",
                         "description": "Optional. The unique identifier inside this chat of a media message group this message belongs to"
@@ -16326,14 +16095,6 @@
                         "$ref": "#/components/schemas/Poll",
                         "description": "Optional. Message is a native poll, information about the poll"
                     },
-                    "poll_option_added": {
-                        "$ref": "#/components/schemas/PollOptionAdded",
-                        "description": "Optional. Service message: answer option was added to a poll"
-                    },
-                    "poll_option_deleted": {
-                        "$ref": "#/components/schemas/PollOptionDeleted",
-                        "description": "Optional. Service message: answer option was deleted from a poll"
-                    },
                     "proximity_alert_triggered": {
                         "$ref": "#/components/schemas/ProximityAlertTriggered",
                         "description": "Optional. Service message. A user in the chat triggered another user's proximity alert while sharing Live Location."
@@ -16357,10 +16118,6 @@
                     "reply_to_message": {
                         "$ref": "#/components/schemas/Message",
                         "description": "Optional. For replies in the same chat and message thread, the original message. Note that the Message object in this field will not contain further reply_to_message fields even if it itself is a reply."
-                    },
-                    "reply_to_poll_option_id": {
-                        "type": "string",
-                        "description": "Optional. Persistent identifier of the specific poll option that is being replied to"
                     },
                     "reply_to_story": {
                         "$ref": "#/components/schemas/Story",
@@ -17302,31 +17059,13 @@
                         "type": "boolean",
                         "description": "True, if the poll allows multiple answers"
                     },
-                    "allows_revoting": {
-                        "type": "boolean",
-                        "description": "True, if the poll allows to change the chosen answer options"
-                    },
                     "close_date": {
                         "type": "integer",
                         "description": "Optional. Point in time (Unix timestamp) when the poll will be automatically closed"
                     },
-                    "correct_option_ids": {
-                        "type": "array",
-                        "items": {
-                            "type": "integer"
-                        },
-                        "description": "Optional. Array of 0-based identifiers of the correct answer options. Available only for polls in quiz mode which are closed or were sent (not forwarded) by the bot or to the private chat with the bot."
-                    },
-                    "description": {
-                        "type": "string",
-                        "description": "Optional. Description of the poll; for polls inside the Message object only"
-                    },
-                    "description_entities": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/components/schemas/MessageEntity"
-                        },
-                        "description": "Optional. Special entities like usernames, URLs, bot commands, etc. that appear in the description"
+                    "correct_option_id": {
+                        "type": "integer",
+                        "description": "Optional. 0-based identifier of the correct answer option. Available only for polls in the quiz mode, which are closed, or was sent (not forwarded) by the bot or to the private chat with the bot."
                     },
                     "explanation": {
                         "type": "string",
@@ -17394,13 +17133,6 @@
                         },
                         "description": "0-based identifiers of chosen answer options. May be empty if the vote was retracted."
                     },
-                    "option_persistent_ids": {
-                        "type": "array",
-                        "items": {
-                            "type": "string"
-                        },
-                        "description": "Persistent identifiers of the chosen answer options. May be empty if the vote was retracted."
-                    },
                     "poll_id": {
                         "type": "string",
                         "description": "Unique poll identifier"
@@ -17419,22 +17151,6 @@
             "PollOption": {
                 "type": "object",
                 "properties": {
-                    "added_by_chat": {
-                        "$ref": "#/components/schemas/Chat",
-                        "description": "Optional. Chat that added the option; omitted if the option wasn't added by a chat after poll creation"
-                    },
-                    "added_by_user": {
-                        "$ref": "#/components/schemas/User",
-                        "description": "Optional. User who added the option; omitted if the option wasn't added by a user after poll creation"
-                    },
-                    "addition_date": {
-                        "type": "integer",
-                        "description": "Optional. Point in time (Unix timestamp) when the option was added; omitted if the option existed in the original poll"
-                    },
-                    "persistent_id": {
-                        "type": "string",
-                        "description": "Unique identifier of the option, persistent on option addition and deletion"
-                    },
                     "text": {
                         "type": "string",
                         "description": "Option text, 1-100 characters"
@@ -17448,60 +17164,10 @@
                     },
                     "voter_count": {
                         "type": "integer",
-                        "description": "Number of users who voted for this option; may be 0 if unknown"
+                        "description": "Number of users that voted for this option"
                     }
                 },
                 "description": "This object contains information about one answer option in a poll.\n"
-            },
-            "PollOptionAdded": {
-                "type": "object",
-                "properties": {
-                    "option_persistent_id": {
-                        "type": "string",
-                        "description": "Unique identifier of the added option"
-                    },
-                    "option_text": {
-                        "type": "string",
-                        "description": "Option text"
-                    },
-                    "option_text_entities": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/components/schemas/MessageEntity"
-                        },
-                        "description": "Optional. Special entities that appear in the option_text"
-                    },
-                    "poll_message": {
-                        "$ref": "#/components/schemas/MaybeInaccessibleMessage",
-                        "description": "Optional. Message containing the poll to which the option was added, if known. Note that the Message object in this field will not contain the reply_to_message field even if it itself is a reply."
-                    }
-                },
-                "description": "Describes a service message about an option added to a poll.\n"
-            },
-            "PollOptionDeleted": {
-                "type": "object",
-                "properties": {
-                    "option_persistent_id": {
-                        "type": "string",
-                        "description": "Unique identifier of the deleted option"
-                    },
-                    "option_text": {
-                        "type": "string",
-                        "description": "Option text"
-                    },
-                    "option_text_entities": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/components/schemas/MessageEntity"
-                        },
-                        "description": "Optional. Special entities that appear in the option_text"
-                    },
-                    "poll_message": {
-                        "$ref": "#/components/schemas/MaybeInaccessibleMessage",
-                        "description": "Optional. Message containing the poll from which the option was deleted, if known. Note that the Message object in this field will not contain the reply_to_message field even if it itself is a reply."
-                    }
-                },
-                "description": "Describes a service message about an option deleted from a poll.\n"
             },
             "PreCheckoutQuery": {
                 "type": "object",
@@ -17550,16 +17216,6 @@
                     }
                 },
                 "description": "Describes an inline message to be sent by a user of a Mini App.\n"
-            },
-            "PreparedKeyboardButton": {
-                "type": "object",
-                "properties": {
-                    "id": {
-                        "type": "string",
-                        "description": "Unique identifier of the keyboard button"
-                    }
-                },
-                "description": "Describes a keyboard button to be used by a user of a Mini App.\n"
             },
             "ProximityAlertTriggered": {
                 "type": "object",
@@ -17748,13 +17404,9 @@
                         "type": "integer",
                         "description": "Identifier of the message that will be replied to in the current chat, or in the chat chat_id if it is specified"
                     },
-                    "poll_option_id": {
-                        "type": "string",
-                        "description": "Optional. Persistent identifier of the specific poll option to be replied to"
-                    },
                     "quote": {
                         "type": "string",
-                        "description": "Optional. Quoted part of the message to be replied to; 0-1024 characters after entities parsing. The quote must be an exact substring of the message to be replied to, including bold, italic, underline, strikethrough, spoiler, custom_emoji, and date_time entities. The message will fail to send if the quote isn't found in the original message."
+                        "description": "Optional. Quoted part of the message to be replied to; 0-1024 characters after entities parsing. The quote must be an exact substring of the message to be replied to, including bold, italic, underline, strikethrough, spoiler, and custom_emoji entities. The message will fail to send if the quote isn't found in the original message."
                     },
                     "quote_entities": {
                         "type": "array",
@@ -18486,7 +18138,7 @@
                         "items": {
                             "$ref": "#/components/schemas/MessageEntity"
                         },
-                        "description": "Optional. Special entities that appear in the quote. Currently, only bold, italic, underline, strikethrough, spoiler, custom_emoji, and date_time entities are kept in quotes."
+                        "description": "Optional. Special entities that appear in the quote. Currently, only bold, italic, underline, strikethrough, spoiler, and custom_emoji entities are kept in quotes."
                     },
                     "is_manual": {
                         "type": "boolean",
@@ -18922,10 +18574,6 @@
                         "$ref": "#/components/schemas/InlineQuery",
                         "description": "Optional. New incoming inline query"
                     },
-                    "managed_bot": {
-                        "$ref": "#/components/schemas/ManagedBotUpdated",
-                        "description": "Optional. A new bot was created to be managed by the bot or token of a bot was changed"
-                    },
                     "message": {
                         "$ref": "#/components/schemas/Message",
                         "description": "Optional. New incoming message of any kind - text, photo, sticker, etc."
@@ -18991,10 +18639,6 @@
                     "can_join_groups": {
                         "type": "boolean",
                         "description": "Optional. True, if the bot can be invited to groups. Returned only in getMe."
-                    },
-                    "can_manage_bots": {
-                        "type": "boolean",
-                        "description": "Optional. True, if other bots can be created to be controlled by the bot. Returned only in getMe."
                     },
                     "can_read_all_group_messages": {
                         "type": "boolean",
