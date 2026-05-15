@@ -3,7 +3,7 @@
     "info": {
         "title": "Telegram Bot API",
         "description": "The Bot API is an HTTP-based interface created for developers keen on building bots for Telegram.\\nTo learn how to create and set up a bot, please consult [Introduction to Bots](https://core.telegram.org/bots) and [Bot FAQ](https://core.telegram.org/bots/faq).",
-        "version": "10.0"
+        "version": "9.6"
     },
     "servers": [
         {
@@ -135,60 +135,6 @@
                                         },
                                         "result": {
                                             "type": "boolean"
-                                        }
-                                    },
-                                    "required": [
-                                        "ok",
-                                        "result"
-                                    ]
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/answerGuestQuery": {
-            "post": {
-                "summary": "answerGuestQuery",
-                "description": "Use this method to reply to a received guest message. On success, a SentGuestMessage object is returned.",
-                "operationId": "answerGuestQuery",
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "type": "object",
-                                "properties": {
-                                    "guest_query_id": {
-                                        "type": "string"
-                                    },
-                                    "result": {
-                                        "$ref": "#/components/schemas/InlineQueryResult"
-                                    }
-                                },
-                                "required": [
-                                    "guest_query_id",
-                                    "result"
-                                ]
-                            }
-                        }
-                    },
-                    "required": true
-                },
-                "responses": {
-                    "200": {
-                        "description": "Successful response",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "ok": {
-                                            "type": "boolean",
-                                            "description": "Request success indicator"
-                                        },
-                                        "result": {
-                                            "$ref": "#/components/schemas/SentGuestMessage"
                                         }
                                     },
                                     "required": [
@@ -1602,69 +1548,6 @@
                 }
             }
         },
-        "/deleteAllMessageReactions": {
-            "post": {
-                "summary": "deleteAllMessageReactions",
-                "description": "Use this method to remove up to 10000 recent reactions in a group or a supergroup chat added by a given user or chat. The bot must have the 'can_delete_messages' administrator right in the chat. Returns True on success.",
-                "operationId": "deleteAllMessageReactions",
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "type": "object",
-                                "properties": {
-                                    "actor_chat_id": {
-                                        "type": "integer"
-                                    },
-                                    "chat_id": {
-                                        "oneOf": [
-                                            {
-                                                "type": "integer"
-                                            },
-                                            {
-                                                "type": "string"
-                                            }
-                                        ]
-                                    },
-                                    "user_id": {
-                                        "type": "integer"
-                                    }
-                                },
-                                "required": [
-                                    "chat_id"
-                                ]
-                            }
-                        }
-                    },
-                    "required": true
-                },
-                "responses": {
-                    "200": {
-                        "description": "Successful response",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "ok": {
-                                            "type": "boolean",
-                                            "description": "Request success indicator"
-                                        },
-                                        "result": {
-                                            "type": "boolean"
-                                        }
-                                    },
-                                    "required": [
-                                        "ok",
-                                        "result"
-                                    ]
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
         "/deleteBusinessMessages": {
             "post": {
                 "summary": "deleteBusinessMessages",
@@ -1919,73 +1802,6 @@
                                         ]
                                     },
                                     "message_id": {
-                                        "type": "integer"
-                                    }
-                                },
-                                "required": [
-                                    "chat_id",
-                                    "message_id"
-                                ]
-                            }
-                        }
-                    },
-                    "required": true
-                },
-                "responses": {
-                    "200": {
-                        "description": "Successful response",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "ok": {
-                                            "type": "boolean",
-                                            "description": "Request success indicator"
-                                        },
-                                        "result": {
-                                            "type": "boolean"
-                                        }
-                                    },
-                                    "required": [
-                                        "ok",
-                                        "result"
-                                    ]
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/deleteMessageReaction": {
-            "post": {
-                "summary": "deleteMessageReaction",
-                "description": "Use this method to remove a reaction from a message in a group or a supergroup chat. The bot must have the 'can_delete_messages' administrator right in the chat. Returns True on success.",
-                "operationId": "deleteMessageReaction",
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "type": "object",
-                                "properties": {
-                                    "actor_chat_id": {
-                                        "type": "integer"
-                                    },
-                                    "chat_id": {
-                                        "oneOf": [
-                                            {
-                                                "type": "integer"
-                                            },
-                                            {
-                                                "type": "string"
-                                            }
-                                        ]
-                                    },
-                                    "message_id": {
-                                        "type": "integer"
-                                    },
-                                    "user_id": {
                                         "type": "integer"
                                     }
                                 },
@@ -2701,14 +2517,7 @@
                                         "type": "string"
                                     },
                                     "chat_id": {
-                                        "oneOf": [
-                                            {
-                                                "type": "integer"
-                                            },
-                                            {
-                                                "type": "string"
-                                            }
-                                        ]
+                                        "type": "integer"
                                     },
                                     "checklist": {
                                         "$ref": "#/components/schemas/InputChecklist"
@@ -2849,7 +2658,7 @@
         "/editMessageMedia": {
             "post": {
                 "summary": "editMessageMedia",
-                "description": "Use this method to edit animation, audio, document, live photo, photo, or video messages, or to add media to text messages. If a message is part of a message album, then it can be edited only to an audio for audio albums, only to a document for document albums and to a photo, a live photo, or a video otherwise. When an inline message is edited, a new file can't be uploaded; use a previously uploaded file via its file_id or specify a URL. On success, if the edited message is not an inline message, the edited Message is returned, otherwise True is returned. Note that business messages that were not sent by the bot and do not contain an inline keyboard can only be edited within 48 hours from the time they were sent.",
+                "description": "Use this method to edit animation, audio, document, photo, or video messages, or to add media to text messages. If a message is part of a message album, then it can be edited only to an audio for audio albums, only to a document for document albums and to a photo or a video otherwise. When an inline message is edited, a new file can't be uploaded; use a previously uploaded file via its file_id or specify a URL. On success, if the edited message is not an inline message, the edited Message is returned, otherwise True is returned. Note that business messages that were not sent by the bot and do not contain an inline keyboard can only be edited within 48 hours from the time they were sent.",
                 "operationId": "editMessageMedia",
                 "requestBody": {
                     "content": {
@@ -3682,7 +3491,7 @@
         "/getChatAdministrators": {
             "post": {
                 "summary": "getChatAdministrators",
-                "description": "Use this method to get a list of administrators in a chat. Returns an Array of ChatMember objects.",
+                "description": "Use this method to get a list of administrators in a chat, which aren't bots. Returns an Array of ChatMember objects.",
                 "operationId": "getChatAdministrators",
                 "requestBody": {
                     "content": {
@@ -3699,9 +3508,6 @@
                                                 "type": "string"
                                             }
                                         ]
-                                    },
-                                    "return_bots": {
-                                        "type": "boolean"
                                     }
                                 },
                                 "required": [
@@ -4140,56 +3946,6 @@
                                         },
                                         "result": {
                                             "$ref": "#/components/schemas/GameHighScore"
-                                        }
-                                    },
-                                    "required": [
-                                        "ok",
-                                        "result"
-                                    ]
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/getManagedBotAccessSettings": {
-            "post": {
-                "summary": "getManagedBotAccessSettings",
-                "description": "Use this method to get the access settings of a managed bot. Returns a BotAccessSettings object on success.",
-                "operationId": "getManagedBotAccessSettings",
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "type": "object",
-                                "properties": {
-                                    "user_id": {
-                                        "type": "integer"
-                                    }
-                                },
-                                "required": [
-                                    "user_id"
-                                ]
-                            }
-                        }
-                    },
-                    "required": true
-                },
-                "responses": {
-                    "200": {
-                        "description": "Successful response",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "ok": {
-                                            "type": "boolean",
-                                            "description": "Request success indicator"
-                                        },
-                                        "result": {
-                                            "$ref": "#/components/schemas/BotAccessSettings"
                                         }
                                     },
                                     "required": [
@@ -4772,63 +4528,6 @@
                                         },
                                         "result": {
                                             "$ref": "#/components/schemas/OwnedGifts"
-                                        }
-                                    },
-                                    "required": [
-                                        "ok",
-                                        "result"
-                                    ]
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/getUserPersonalChatMessages": {
-            "post": {
-                "summary": "getUserPersonalChatMessages",
-                "description": "Use this method to get the last messages from the personal chat (i.e., the chat currently added to their profile) of a given user. On success, an array of Message objects is returned.",
-                "operationId": "getUserPersonalChatMessages",
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "type": "object",
-                                "properties": {
-                                    "limit": {
-                                        "type": "integer"
-                                    },
-                                    "user_id": {
-                                        "type": "integer"
-                                    }
-                                },
-                                "required": [
-                                    "user_id",
-                                    "limit"
-                                ]
-                            }
-                        }
-                    },
-                    "required": true
-                },
-                "responses": {
-                    "200": {
-                        "description": "Successful response",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "ok": {
-                                            "type": "boolean",
-                                            "description": "Request success indicator"
-                                        },
-                                        "result": {
-                                            "type": "array",
-                                            "items": {
-                                                "$ref": "#/components/schemas/Message"
-                                            }
                                         }
                                     },
                                     "required": [
@@ -6565,14 +6264,7 @@
                                         "type": "string"
                                     },
                                     "chat_id": {
-                                        "oneOf": [
-                                            {
-                                                "type": "integer"
-                                            },
-                                            {
-                                                "type": "string"
-                                            }
-                                        ]
+                                        "type": "integer"
                                     },
                                     "checklist": {
                                         "$ref": "#/components/schemas/InputChecklist"
@@ -6987,14 +6679,7 @@
                                         "type": "string"
                                     },
                                     "chat_id": {
-                                        "oneOf": [
-                                            {
-                                                "type": "integer"
-                                            },
-                                            {
-                                                "type": "string"
-                                            }
-                                        ]
+                                        "type": "integer"
                                     },
                                     "disable_notification": {
                                         "type": "boolean"
@@ -7290,132 +6975,6 @@
                 }
             }
         },
-        "/sendLivePhoto": {
-            "post": {
-                "summary": "sendLivePhoto",
-                "description": "Use this method to send live photos. On success, the sent Message is returned.",
-                "operationId": "sendLivePhoto",
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "type": "object",
-                                "properties": {
-                                    "allow_paid_broadcast": {
-                                        "type": "boolean"
-                                    },
-                                    "business_connection_id": {
-                                        "type": "string"
-                                    },
-                                    "caption": {
-                                        "type": "string"
-                                    },
-                                    "caption_entities": {
-                                        "type": "array",
-                                        "items": {
-                                            "$ref": "#/components/schemas/MessageEntity"
-                                        }
-                                    },
-                                    "chat_id": {
-                                        "oneOf": [
-                                            {
-                                                "type": "integer"
-                                            },
-                                            {
-                                                "type": "string"
-                                            }
-                                        ]
-                                    },
-                                    "direct_messages_topic_id": {
-                                        "type": "integer"
-                                    },
-                                    "disable_notification": {
-                                        "type": "boolean"
-                                    },
-                                    "has_spoiler": {
-                                        "type": "boolean"
-                                    },
-                                    "live_photo": {
-                                        "$ref": "#/components/schemas/InputFile"
-                                    },
-                                    "message_effect_id": {
-                                        "type": "string"
-                                    },
-                                    "message_thread_id": {
-                                        "type": "integer"
-                                    },
-                                    "parse_mode": {
-                                        "type": "string"
-                                    },
-                                    "photo": {
-                                        "$ref": "#/components/schemas/InputFile"
-                                    },
-                                    "protect_content": {
-                                        "type": "boolean"
-                                    },
-                                    "reply_markup": {
-                                        "oneOf": [
-                                            {
-                                                "$ref": "#/components/schemas/InlineKeyboardMarkup"
-                                            },
-                                            {
-                                                "$ref": "#/components/schemas/ReplyKeyboardMarkup"
-                                            },
-                                            {
-                                                "$ref": "#/components/schemas/ReplyKeyboardRemove"
-                                            },
-                                            {
-                                                "$ref": "#/components/schemas/ForceReply"
-                                            }
-                                        ]
-                                    },
-                                    "reply_parameters": {
-                                        "$ref": "#/components/schemas/ReplyParameters"
-                                    },
-                                    "show_caption_above_media": {
-                                        "type": "boolean"
-                                    },
-                                    "suggested_post_parameters": {
-                                        "$ref": "#/components/schemas/SuggestedPostParameters"
-                                    }
-                                },
-                                "required": [
-                                    "chat_id",
-                                    "live_photo",
-                                    "photo"
-                                ]
-                            }
-                        }
-                    },
-                    "required": true
-                },
-                "responses": {
-                    "200": {
-                        "description": "Successful response",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "ok": {
-                                            "type": "boolean",
-                                            "description": "Request success indicator"
-                                        },
-                                        "result": {
-                                            "$ref": "#/components/schemas/Message"
-                                        }
-                                    },
-                                    "required": [
-                                        "ok",
-                                        "result"
-                                    ]
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
         "/sendLocation": {
             "post": {
                 "summary": "sendLocation",
@@ -7539,7 +7098,7 @@
         "/sendMediaGroup": {
             "post": {
                 "summary": "sendMediaGroup",
-                "description": "Use this method to send a group of photos, live photos, videos, documents or audios as an album. Documents and audio files can be only grouped in an album with messages of the same type. On success, an array of Message objects that were sent is returned.",
+                "description": "Use this method to send a group of photos, videos, documents or audios as an album. Documents and audio files can be only grouped in an album with messages of the same type. On success, an array of Message objects that were sent is returned.",
                 "operationId": "sendMediaGroup",
                 "requestBody": {
                     "content": {
@@ -7578,9 +7137,6 @@
                                                 },
                                                 {
                                                     "$ref": "#/components/schemas/InputMediaDocument"
-                                                },
-                                                {
-                                                    "$ref": "#/components/schemas/InputMediaLivePhoto"
                                                 },
                                                 {
                                                     "$ref": "#/components/schemas/InputMediaPhoto"
@@ -7762,7 +7318,7 @@
         "/sendMessageDraft": {
             "post": {
                 "summary": "sendMessageDraft",
-                "description": "Use this method to stream a partial message to a user while the message is being generated. Note that the streamed draft is ephemeral and acts as a temporary 30-second preview - once the output is finalized, you must call sendMessage with the complete message to persist it in the user's chat. Returns True on success.",
+                "description": "Use this method to stream a partial message to a user while the message is being generated. Returns True on success.",
                 "operationId": "sendMessageDraft",
                 "requestBody": {
                     "content": {
@@ -7794,7 +7350,8 @@
                                 },
                                 "required": [
                                     "chat_id",
-                                    "draft_id"
+                                    "draft_id",
+                                    "text"
                                 ]
                             }
                         }
@@ -8121,12 +7678,6 @@
                                             "type": "integer"
                                         }
                                     },
-                                    "country_codes": {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    },
                                     "description": {
                                         "type": "string"
                                     },
@@ -8151,9 +7702,6 @@
                                             "$ref": "#/components/schemas/MessageEntity"
                                         }
                                     },
-                                    "explanation_media": {
-                                        "$ref": "#/components/schemas/InputPollMedia"
-                                    },
                                     "explanation_parse_mode": {
                                         "type": "string"
                                     },
@@ -8164,12 +7712,6 @@
                                         "type": "boolean"
                                     },
                                     "is_closed": {
-                                        "type": "boolean"
-                                    },
-                                    "media": {
-                                        "$ref": "#/components/schemas/InputPollMedia"
-                                    },
-                                    "members_only": {
                                         "type": "boolean"
                                     },
                                     "message_effect_id": {
@@ -9728,66 +9270,6 @@
                                 "required": [
                                     "user_id",
                                     "score"
-                                ]
-                            }
-                        }
-                    },
-                    "required": true
-                },
-                "responses": {
-                    "200": {
-                        "description": "Successful response",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "ok": {
-                                            "type": "boolean",
-                                            "description": "Request success indicator"
-                                        },
-                                        "result": {
-                                            "type": "boolean"
-                                        }
-                                    },
-                                    "required": [
-                                        "ok",
-                                        "result"
-                                    ]
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/setManagedBotAccessSettings": {
-            "post": {
-                "summary": "setManagedBotAccessSettings",
-                "description": "Use this method to change the access settings of a managed bot. Returns True on success.",
-                "operationId": "setManagedBotAccessSettings",
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "type": "object",
-                                "properties": {
-                                    "added_user_ids": {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "integer"
-                                        }
-                                    },
-                                    "is_access_restricted": {
-                                        "type": "boolean"
-                                    },
-                                    "user_id": {
-                                        "type": "integer"
-                                    }
-                                },
-                                "required": [
-                                    "user_id",
-                                    "is_access_restricted"
                                 ]
                             }
                         }
@@ -11892,7 +11374,7 @@
                     },
                     "is_inverted": {
                         "type": "boolean",
-                        "description": "Optional. True, if the background fill must be applied only to the pattern itself. All other pixels are black in this case. For dark themes only."
+                        "description": "Optional. True, if the background fill must be applied only to the pattern itself. All other pixels are black in this case. For dark themes only"
                     },
                     "is_moving": {
                         "type": "boolean",
@@ -11949,23 +11431,6 @@
                 },
                 "description": "Describes the birthdate of a user.\n"
             },
-            "BotAccessSettings": {
-                "type": "object",
-                "properties": {
-                    "added_users": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/components/schemas/User"
-                        },
-                        "description": "Optional. The list of other users who have access to the bot if the access is restricted"
-                    },
-                    "is_access_restricted": {
-                        "type": "boolean",
-                        "description": "True, if only selected users can access the bot. The bot's owner can always access it."
-                    }
-                },
-                "description": "This object describes the access settings of a bot.\n"
-            },
             "BotCommand": {
                 "type": "object",
                 "properties": {
@@ -11975,7 +11440,7 @@
                     },
                     "description": {
                         "type": "string",
-                        "description": "Description of the command; 1-256 characters"
+                        "description": "Description of the command; 1-256 characters."
                     }
                 },
                 "description": "This object represents a bot command.\n"
@@ -12026,7 +11491,7 @@
                                 "type": "string"
                             }
                         ],
-                        "description": "Unique identifier for the target chat or username of the target supergroup in the format @username. Channel direct messages chats and channel chats aren't supported."
+                        "description": "Unique identifier for the target chat or username of the target supergroup (in the format @supergroupusername). Channel direct messages chats and channel chats aren't supported."
                     },
                     "type": {
                         "type": "string",
@@ -12047,7 +11512,7 @@
                                 "type": "string"
                             }
                         ],
-                        "description": "Unique identifier for the target chat or username of the target supergroup in the format @username. Channel direct messages chats and channel chats aren't supported."
+                        "description": "Unique identifier for the target chat or username of the target supergroup (in the format @supergroupusername). Channel direct messages chats and channel chats aren't supported."
                     },
                     "type": {
                         "type": "string",
@@ -12068,7 +11533,7 @@
                                 "type": "string"
                             }
                         ],
-                        "description": "Unique identifier for the target chat or username of the target supergroup in the format @username. Channel direct messages chats and channel chats aren't supported."
+                        "description": "Unique identifier for the target chat or username of the target supergroup (in the format @supergroupusername). Channel direct messages chats and channel chats aren't supported."
                     },
                     "type": {
                         "type": "string",
@@ -12326,7 +11791,7 @@
                     },
                     "inline_message_id": {
                         "type": "string",
-                        "description": "Optional. Identifier of the message sent via the bot in inline mode, that originated the query"
+                        "description": "Optional. Identifier of the message sent via the bot in inline mode, that originated the query."
                     },
                     "message": {
                         "$ref": "#/components/schemas/MaybeInaccessibleMessage",
@@ -12745,7 +12210,7 @@
                     },
                     "paid_message_star_count": {
                         "type": "integer",
-                        "description": "Optional. The number of Telegram Stars a general user has to pay to send a message to the chat"
+                        "description": "Optional. The number of Telegram Stars a general user have to pay to send a message to the chat"
                     },
                     "parent_chat": {
                         "$ref": "#/components/schemas/Chat",
@@ -12865,7 +12330,7 @@
                 "properties": {
                     "bio": {
                         "type": "string",
-                        "description": "Optional. Bio of the user"
+                        "description": "Optional. Bio of the user."
                     },
                     "chat": {
                         "$ref": "#/components/schemas/Chat",
@@ -13007,7 +12472,7 @@
                     },
                     "until_date": {
                         "type": "integer",
-                        "description": "Date when restrictions will be lifted for this user; Unix time. If 0, then the user is banned forever."
+                        "description": "Date when restrictions will be lifted for this user; Unix time. If 0, then the user is banned forever"
                     },
                     "user": {
                         "$ref": "#/components/schemas/User",
@@ -13101,10 +12566,6 @@
                         "type": "boolean",
                         "description": "True, if the user is allowed to pin messages"
                     },
-                    "can_react_to_messages": {
-                        "type": "boolean",
-                        "description": "True, if the user is allowed to react to messages"
-                    },
                     "can_send_audios": {
                         "type": "boolean",
                         "description": "True, if the user is allowed to send audios"
@@ -13155,7 +12616,7 @@
                     },
                     "until_date": {
                         "type": "integer",
-                        "description": "Date when restrictions will be lifted for this user; Unix time. If 0, then the user is restricted forever."
+                        "description": "Date when restrictions will be lifted for this user; Unix time. If 0, then the user is restricted forever"
                     },
                     "user": {
                         "$ref": "#/components/schemas/User",
@@ -13181,7 +12642,7 @@
                     },
                     "invite_link": {
                         "$ref": "#/components/schemas/ChatInviteLink",
-                        "description": "Optional. Chat invite link, which was used by the user to join the chat; for joining by invite link events only"
+                        "description": "Optional. Chat invite link, which was used by the user to join the chat; for joining by invite link events only."
                     },
                     "new_chat_member": {
                         "$ref": "#/components/schemas/ChatMember",
@@ -13217,7 +12678,7 @@
                 "properties": {
                     "new_owner": {
                         "$ref": "#/components/schemas/User",
-                        "description": "Optional. The user who will become the new owner of the chat if the previous owner does not return to the chat"
+                        "description": "Optional. The user which will be the new owner of the chat if the previous owner does not return to the chat"
                     }
                 },
                 "description": "Describes a service message about the chat owner leaving the chat.\n"
@@ -13231,11 +12692,11 @@
                     },
                     "can_change_info": {
                         "type": "boolean",
-                        "description": "Optional. True, if the user is allowed to change the chat title, photo and other settings. Ignored in public supergroups."
+                        "description": "Optional. True, if the user is allowed to change the chat title, photo and other settings. Ignored in public supergroups"
                     },
                     "can_edit_tag": {
                         "type": "boolean",
-                        "description": "Optional. True, if the user is allowed to edit their own tag. If omitted, defaults to the value of can_pin_messages."
+                        "description": "Optional. True, if the user is allowed to edit their own tag"
                     },
                     "can_invite_users": {
                         "type": "boolean",
@@ -13243,15 +12704,11 @@
                     },
                     "can_manage_topics": {
                         "type": "boolean",
-                        "description": "Optional. True, if the user is allowed to create forum topics. If omitted defaults to the value of can_pin_messages."
+                        "description": "Optional. True, if the user is allowed to create forum topics. If omitted defaults to the value of can_pin_messages"
                     },
                     "can_pin_messages": {
                         "type": "boolean",
-                        "description": "Optional. True, if the user is allowed to pin messages. Ignored in public supergroups."
-                    },
-                    "can_react_to_messages": {
-                        "type": "boolean",
-                        "description": "Optional. True, if the user is allowed to react to messages. If omitted, defaults to the value of can_send_messages."
+                        "description": "Optional. True, if the user is allowed to pin messages. Ignored in public supergroups"
                     },
                     "can_send_audios": {
                         "type": "boolean",
@@ -13334,11 +12791,11 @@
                     },
                     "title": {
                         "type": "string",
-                        "description": "Optional. Title of the chat, if the title was requested by the bot"
+                        "description": "Optional. Title of the chat, if the title was requested by the bot."
                     },
                     "username": {
                         "type": "string",
-                        "description": "Optional. Username of the chat, if the username was requested by the bot and available"
+                        "description": "Optional. Username of the chat, if the username was requested by the bot and available."
                     }
                 },
                 "description": "This object contains information about a chat that was shared with the bot using a KeyboardButtonRequestChat button.\n"
@@ -13548,7 +13005,7 @@
                     },
                     "user": {
                         "$ref": "#/components/schemas/User",
-                        "description": "Optional. Information about the user that created the topic. Currently, it is always present."
+                        "description": "Optional. Information about the user that created the topic. Currently, it is always present"
                     }
                 },
                 "description": "Describes a topic of a direct messages chat.\n"
@@ -13708,10 +13165,6 @@
                         "$ref": "#/components/schemas/LinkPreviewOptions",
                         "description": "Optional. Options used for link preview generation for the original message, if it is a text message"
                     },
-                    "live_photo": {
-                        "$ref": "#/components/schemas/LivePhoto",
-                        "description": "Optional. Message is a live photo, information about the live photo"
-                    },
                     "location": {
                         "$ref": "#/components/schemas/Location",
                         "description": "Optional. Message is a shared location, information about the location"
@@ -13804,7 +13257,7 @@
                         "description": "Optional. Use this parameter if you want to force reply from specific users only. Targets: 1) users that are @mentioned in the text of the Message object; 2) if the bot's message is a reply to a message in the same chat and forum topic, sender of the original message."
                     }
                 },
-                "description": "Upon receiving a message with this object, Telegram clients will display a reply interface to the user (act as if the user has selected the bot's message and tapped 'Reply'). This can be extremely useful if you want to create user-friendly step-by-step interfaces without having to sacrifice privacy mode. Not supported in channels and for messages sent on behalf of a user account.\n"
+                "description": "Upon receiving a message with this object, Telegram clients will display a reply interface to the user (act as if the user has selected the bot's message and tapped 'Reply'). This can be extremely useful if you want to create user-friendly step-by-step interfaces without having to sacrifice privacy mode. Not supported in channels and for messages sent on behalf of a Telegram Business account.\n"
             },
             "ForumTopic": {
                 "type": "object",
@@ -13881,7 +13334,7 @@
                 "properties": {
                     "animation": {
                         "$ref": "#/components/schemas/Animation",
-                        "description": "Optional. Animation that will be displayed in the game message in chats. Upload via BotFather."
+                        "description": "Optional. Animation that will be displayed in the game message in chats. Upload via BotFather"
                     },
                     "description": {
                         "type": "string",
@@ -13892,7 +13345,7 @@
                         "items": {
                             "$ref": "#/components/schemas/PhotoSize"
                         },
-                        "description": "Photo that will be displayed in the game message in chats"
+                        "description": "Photo that will be displayed in the game message in chats."
                     },
                     "text": {
                         "type": "string",
@@ -14058,7 +13511,7 @@
                     },
                     "unique_gift_number": {
                         "type": "integer",
-                        "description": "Optional. Unique number reserved for this gift when upgraded. See the number field in UniqueGift."
+                        "description": "Optional. Unique number reserved for this gift when upgraded. See the number field in UniqueGift"
                     }
                 },
                 "description": "Describes a service message about a regular gift that was sent or received.\n"
@@ -14244,7 +13697,7 @@
                     },
                     "copy_text": {
                         "$ref": "#/components/schemas/CopyTextButton",
-                        "description": "Optional. Description of the button that copies the specified text to the clipboard"
+                        "description": "Optional. Description of the button that copies the specified text to the clipboard."
                     },
                     "icon_custom_emoji_id": {
                         "type": "string",
@@ -14264,15 +13717,15 @@
                     },
                     "switch_inline_query": {
                         "type": "string",
-                        "description": "Optional. If set, pressing the button will prompt the user to select one of their chats, open that chat and insert the bot's username and the specified inline query in the input field. May be empty, in which case just the bot's username will be inserted. Not supported for messages sent in channel direct messages chats and on behalf of a business account."
+                        "description": "Optional. If set, pressing the button will prompt the user to select one of their chats, open that chat and insert the bot's username and the specified inline query in the input field. May be empty, in which case just the bot's username will be inserted. Not supported for messages sent in channel direct messages chats and on behalf of a Telegram Business account."
                     },
                     "switch_inline_query_chosen_chat": {
                         "$ref": "#/components/schemas/SwitchInlineQueryChosenChat",
-                        "description": "Optional. If set, pressing the button will prompt the user to select one of their chats of the specified type, open that chat and insert the bot's username and the specified inline query in the input field. Not supported for messages sent in channel direct messages chats and on behalf of a business account."
+                        "description": "Optional. If set, pressing the button will prompt the user to select one of their chats of the specified type, open that chat and insert the bot's username and the specified inline query in the input field. Not supported for messages sent in channel direct messages chats and on behalf of a Telegram Business account."
                     },
                     "switch_inline_query_current_chat": {
                         "type": "string",
-                        "description": "Optional. If set, pressing the button will insert the bot's username and the specified inline query in the current chat's input field. May be empty, in which case only the bot's username will be inserted.This offers a quick way for the user to open your bot in inline mode in the same chat - good for selecting something from multiple options. Not supported in channels and for messages sent in channel direct messages chats and on behalf of a business account."
+                        "description": "Optional. If set, pressing the button will insert the bot's username and the specified inline query in the current chat's input field. May be empty, in which case only the bot's username will be inserted.This offers a quick way for the user to open your bot in inline mode in the same chat - good for selecting something from multiple options. Not supported in channels and for messages sent in channel direct messages chats and on behalf of a Telegram Business account."
                     },
                     "text": {
                         "type": "string",
@@ -14284,7 +13737,7 @@
                     },
                     "web_app": {
                         "$ref": "#/components/schemas/WebAppInfo",
-                        "description": "Optional. Description of the Web App that will be launched when the user presses the button. The Web App will be able to send an arbitrary message on behalf of the user using the method answerWebAppQuery. Available only in private chats between a user and the bot. Not supported for messages sent on behalf of a business account."
+                        "description": "Optional. Description of the Web App that will be launched when the user presses the button. The Web App will be able to send an arbitrary message on behalf of the user using the method answerWebAppQuery. Available only in private chats between a user and the bot. Not supported for messages sent on behalf of a Telegram Business account."
                     }
                 },
                 "description": "This object represents one button of an inline keyboard. Exactly one of the fields other than text, icon_custom_emoji_id, and style must be used to specify the type of the button.\n"
@@ -14310,7 +13763,7 @@
                 "properties": {
                     "chat_type": {
                         "type": "string",
-                        "description": "Optional. Type of the chat from which the inline query was sent. Can be either “sender” for a private chat with the inline query sender, “private”, “group”, “supergroup”, or “channel”. The chat type should be always known for requests sent from official clients and most third-party clients, unless the request was sent from a secret chat."
+                        "description": "Optional. Type of the chat from which the inline query was sent. Can be either “sender” for a private chat with the inline query sender, “private”, “group”, “supergroup”, or “channel”. The chat type should be always known for requests sent from official clients and most third-party clients, unless the request was sent from a secret chat"
                     },
                     "from": {
                         "$ref": "#/components/schemas/User",
@@ -14992,7 +14445,7 @@
                     },
                     "thumbnail_mime_type": {
                         "type": "string",
-                        "description": "Optional. MIME type of the thumbnail, must be one of “image/jpeg”, “image/gif”, or “video/mp4”. Defaults to “image/jpeg”."
+                        "description": "Optional. MIME type of the thumbnail, must be one of “image/jpeg”, “image/gif”, or “video/mp4”. Defaults to “image/jpeg”"
                     },
                     "thumbnail_url": {
                         "type": "string",
@@ -15034,7 +14487,7 @@
                     },
                     "live_period": {
                         "type": "integer",
-                        "description": "Optional. Period in seconds during which the location can be updated, must be between 60 and 86400, or 0x7FFFFFFF for live locations that can be edited indefinitely"
+                        "description": "Optional. Period in seconds during which the location can be updated, should be between 60 and 86400, or 0x7FFFFFFF for live locations that can be edited indefinitely."
                     },
                     "longitude": {
                         "type": "number",
@@ -15123,7 +14576,7 @@
                     },
                     "thumbnail_mime_type": {
                         "type": "string",
-                        "description": "Optional. MIME type of the thumbnail, must be one of “image/jpeg”, “image/gif”, or “video/mp4”. Defaults to “image/jpeg”."
+                        "description": "Optional. MIME type of the thumbnail, must be one of “image/jpeg”, “image/gif”, or “video/mp4”. Defaults to “image/jpeg”"
                     },
                     "thumbnail_url": {
                         "type": "string",
@@ -15176,7 +14629,7 @@
                     },
                     "photo_url": {
                         "type": "string",
-                        "description": "A valid URL of the photo. Photo must be in JPEG format. Photo size must not exceed 5MB."
+                        "description": "A valid URL of the photo. Photo must be in JPEG format. Photo size must not exceed 5MB"
                     },
                     "photo_width": {
                         "type": "integer",
@@ -15607,7 +15060,7 @@
                     },
                     "live_period": {
                         "type": "integer",
-                        "description": "Optional. Period in seconds during which the location can be updated, must be between 60 and 86400, or 0x7FFFFFFF for live locations that can be edited indefinitely"
+                        "description": "Optional. Period in seconds during which the location can be updated, should be between 60 and 86400, or 0x7FFFFFFF for live locations that can be edited indefinitely."
                     },
                     "longitude": {
                         "type": "number",
@@ -15622,19 +15075,16 @@
             },
             "InputMedia": {
                 "type": "object",
-                "description": "This object represents the content of a media message to be sent. It should be one of\n- InputMediaAnimation\n- InputMediaAudio\n- InputMediaDocument\n- InputMediaLivePhoto\n- InputMediaPhoto\n- InputMediaVideo\n",
+                "description": "This object represents the content of a media message to be sent. It should be one of\n- InputMediaAnimation\n- InputMediaDocument\n- InputMediaAudio\n- InputMediaPhoto\n- InputMediaVideo\n",
                 "oneOf": [
                     {
                         "$ref": "#/components/schemas/InputMediaAnimation"
                     },
                     {
-                        "$ref": "#/components/schemas/InputMediaAudio"
-                    },
-                    {
                         "$ref": "#/components/schemas/InputMediaDocument"
                     },
                     {
-                        "$ref": "#/components/schemas/InputMediaLivePhoto"
+                        "$ref": "#/components/schemas/InputMediaAudio"
                     },
                     {
                         "$ref": "#/components/schemas/InputMediaPhoto"
@@ -15779,69 +15229,6 @@
                 },
                 "description": "Represents a general file to be sent.\n"
             },
-            "InputMediaLivePhoto": {
-                "type": "object",
-                "properties": {
-                    "caption": {
-                        "type": "string",
-                        "description": "Optional. Caption of the live photo to be sent, 0-1024 characters after entities parsing"
-                    },
-                    "caption_entities": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/components/schemas/MessageEntity"
-                        },
-                        "description": "Optional. List of special entities that appear in the caption, which can be specified instead of parse_mode"
-                    },
-                    "has_spoiler": {
-                        "type": "boolean",
-                        "description": "Optional. Pass True if the live photo needs to be covered with a spoiler animation"
-                    },
-                    "media": {
-                        "type": "string",
-                        "description": "Video of the live photo to send. Pass a file_id to send a file that exists on the Telegram servers (recommended) or pass “attach://\u003cfile_attach_name\u003e” to upload a new one using multipart/form-data under \u003cfile_attach_name\u003e name. More information on Sending Files ». Sending live photos by a URL is currently unsupported."
-                    },
-                    "parse_mode": {
-                        "type": "string",
-                        "description": "Optional. Mode for parsing entities in the live photo caption. See formatting options for more details."
-                    },
-                    "photo": {
-                        "type": "string",
-                        "description": "The static photo to send. Pass a file_id to send a file that exists on the Telegram servers (recommended) or pass “attach://\u003cfile_attach_name\u003e” to upload a new one using multipart/form-data under \u003cfile_attach_name\u003e name. More information on Sending Files ». Sending live photos by a URL is currently unsupported."
-                    },
-                    "show_caption_above_media": {
-                        "type": "boolean",
-                        "description": "Optional. Pass True, if the caption must be shown above the message media"
-                    },
-                    "type": {
-                        "type": "string",
-                        "description": "Type of the result, must be live_photo"
-                    }
-                },
-                "description": "Represents a live photo to be sent.\n"
-            },
-            "InputMediaLocation": {
-                "type": "object",
-                "properties": {
-                    "horizontal_accuracy": {
-                        "type": "number",
-                        "description": "Optional. The radius of uncertainty for the location, measured in meters; 0-1500"
-                    },
-                    "latitude": {
-                        "type": "number",
-                        "description": "Latitude of the location"
-                    },
-                    "longitude": {
-                        "type": "number",
-                        "description": "Longitude of the location"
-                    },
-                    "type": {
-                        "type": "string",
-                        "description": "Type of the result, must be location"
-                    }
-                },
-                "description": "Represents a location to be sent.\n"
-            },
             "InputMediaPhoto": {
                 "type": "object",
                 "properties": {
@@ -15878,66 +15265,6 @@
                     }
                 },
                 "description": "Represents a photo to be sent.\n"
-            },
-            "InputMediaSticker": {
-                "type": "object",
-                "properties": {
-                    "emoji": {
-                        "type": "string",
-                        "description": "Optional. Emoji associated with the sticker; only for just uploaded stickers"
-                    },
-                    "media": {
-                        "type": "string",
-                        "description": "File to send. Pass a file_id to send a file that exists on the Telegram servers (recommended), pass an HTTP URL for Telegram to get a .WEBP sticker from the Internet, or pass “attach://\u003cfile_attach_name\u003e” to upload a new .WEBP, .TGS, or .WEBM sticker using multipart/form-data under \u003cfile_attach_name\u003e name. More information on Sending Files »"
-                    },
-                    "type": {
-                        "type": "string",
-                        "description": "Type of the result, must be sticker"
-                    }
-                },
-                "description": "Represents a sticker file to be sent.\n"
-            },
-            "InputMediaVenue": {
-                "type": "object",
-                "properties": {
-                    "address": {
-                        "type": "string",
-                        "description": "Address of the venue"
-                    },
-                    "foursquare_id": {
-                        "type": "string",
-                        "description": "Optional. Foursquare identifier of the venue"
-                    },
-                    "foursquare_type": {
-                        "type": "string",
-                        "description": "Optional. Foursquare type of the venue, if known. (For example, “arts_entertainment/default”, “arts_entertainment/aquarium” or “food/icecream”.)"
-                    },
-                    "google_place_id": {
-                        "type": "string",
-                        "description": "Optional. Google Places identifier of the venue"
-                    },
-                    "google_place_type": {
-                        "type": "string",
-                        "description": "Optional. Google Places type of the venue. (See supported types.)"
-                    },
-                    "latitude": {
-                        "type": "number",
-                        "description": "Latitude of the location"
-                    },
-                    "longitude": {
-                        "type": "number",
-                        "description": "Longitude of the location"
-                    },
-                    "title": {
-                        "type": "string",
-                        "description": "Name of the venue"
-                    },
-                    "type": {
-                        "type": "string",
-                        "description": "Type of the result, must be venue"
-                    }
-                },
-                "description": "Represents a venue to be sent.\n"
             },
             "InputMediaVideo": {
                 "type": "object",
@@ -16010,11 +15337,8 @@
             },
             "InputPaidMedia": {
                 "type": "object",
-                "description": "This object describes the paid media to be sent. Currently, it can be one of\n- InputPaidMediaLivePhoto\n- InputPaidMediaPhoto\n- InputPaidMediaVideo\n",
+                "description": "This object describes the paid media to be sent. Currently, it can be one of\n- InputPaidMediaPhoto\n- InputPaidMediaVideo\n",
                 "oneOf": [
-                    {
-                        "$ref": "#/components/schemas/InputPaidMediaLivePhoto"
-                    },
                     {
                         "$ref": "#/components/schemas/InputPaidMediaPhoto"
                     },
@@ -16022,24 +15346,6 @@
                         "$ref": "#/components/schemas/InputPaidMediaVideo"
                     }
                 ]
-            },
-            "InputPaidMediaLivePhoto": {
-                "type": "object",
-                "properties": {
-                    "media": {
-                        "type": "string",
-                        "description": "Video of the live photo to send. Pass a file_id to send a file that exists on the Telegram servers (recommended) or pass “attach://\u003cfile_attach_name\u003e” to upload a new one using multipart/form-data under \u003cfile_attach_name\u003e name. More information on Sending Files ». Sending live photos by a URL is currently unsupported."
-                    },
-                    "photo": {
-                        "type": "string",
-                        "description": "The static photo to send. Pass a file_id to send a file that exists on the Telegram servers (recommended) or pass “attach://\u003cfile_attach_name\u003e” to upload a new one using multipart/form-data under \u003cfile_attach_name\u003e name. More information on Sending Files ». Sending live photos by a URL is currently unsupported."
-                    },
-                    "type": {
-                        "type": "string",
-                        "description": "Type of the media, must be live_photo"
-                    }
-                },
-                "description": "The paid media to send is a live photo.\n"
             },
             "InputPaidMediaPhoto": {
                 "type": "object",
@@ -16097,43 +15403,9 @@
                 },
                 "description": "The paid media to send is a video.\n"
             },
-            "InputPollMedia": {
-                "type": "object",
-                "description": "This object represents the content of a poll description or a quiz explanation to be sent. It should be one of\n- InputMediaAnimation\n- InputMediaAudio\n- InputMediaDocument\n- InputMediaLivePhoto\n- InputMediaLocation\n- InputMediaPhoto\n- InputMediaVenue\n- InputMediaVideo\n",
-                "oneOf": [
-                    {
-                        "$ref": "#/components/schemas/InputMediaAnimation"
-                    },
-                    {
-                        "$ref": "#/components/schemas/InputMediaAudio"
-                    },
-                    {
-                        "$ref": "#/components/schemas/InputMediaDocument"
-                    },
-                    {
-                        "$ref": "#/components/schemas/InputMediaLivePhoto"
-                    },
-                    {
-                        "$ref": "#/components/schemas/InputMediaLocation"
-                    },
-                    {
-                        "$ref": "#/components/schemas/InputMediaPhoto"
-                    },
-                    {
-                        "$ref": "#/components/schemas/InputMediaVenue"
-                    },
-                    {
-                        "$ref": "#/components/schemas/InputMediaVideo"
-                    }
-                ]
-            },
             "InputPollOption": {
                 "type": "object",
                 "properties": {
-                    "media": {
-                        "$ref": "#/components/schemas/InputPollOptionMedia",
-                        "description": "Optional. Media added to the poll option"
-                    },
                     "text": {
                         "type": "string",
                         "description": "Option text, 1-100 characters"
@@ -16143,41 +15415,14 @@
                         "items": {
                             "$ref": "#/components/schemas/MessageEntity"
                         },
-                        "description": "Optional. A JSON-serialized list of special entities that appear in the poll option text. It can be specified instead of text_parse_mode."
+                        "description": "Optional. A JSON-serialized list of special entities that appear in the poll option text. It can be specified instead of text_parse_mode"
                     },
                     "text_parse_mode": {
                         "type": "string",
-                        "description": "Optional. Mode for parsing entities in the text. See formatting options for more details. Currently, only custom emoji entities are allowed."
+                        "description": "Optional. Mode for parsing entities in the text. See formatting options for more details. Currently, only custom emoji entities are allowed"
                     }
                 },
                 "description": "This object contains information about one answer option in a poll to be sent.\n"
-            },
-            "InputPollOptionMedia": {
-                "type": "object",
-                "description": "This object represents the content of a poll option to be sent. It should be one of\n- InputMediaAnimation\n- InputMediaLivePhoto\n- InputMediaLocation\n- InputMediaPhoto\n- InputMediaSticker\n- InputMediaVenue\n- InputMediaVideo\n",
-                "oneOf": [
-                    {
-                        "$ref": "#/components/schemas/InputMediaAnimation"
-                    },
-                    {
-                        "$ref": "#/components/schemas/InputMediaLivePhoto"
-                    },
-                    {
-                        "$ref": "#/components/schemas/InputMediaLocation"
-                    },
-                    {
-                        "$ref": "#/components/schemas/InputMediaPhoto"
-                    },
-                    {
-                        "$ref": "#/components/schemas/InputMediaSticker"
-                    },
-                    {
-                        "$ref": "#/components/schemas/InputMediaVenue"
-                    },
-                    {
-                        "$ref": "#/components/schemas/InputMediaVideo"
-                    }
-                ]
             },
             "InputProfilePhoto": {
                 "type": "object",
@@ -16433,7 +15678,7 @@
                     },
                     "text": {
                         "type": "string",
-                        "description": "Text of the button. If none of the fields other than text, icon_custom_emoji_id, and style are used, it will be sent as a message when the button is pressed."
+                        "description": "Text of the button. If none of the fields other than text, icon_custom_emoji_id, and style are used, it will be sent as a message when the button is pressed"
                     },
                     "web_app": {
                         "$ref": "#/components/schemas/WebAppInfo",
@@ -16469,7 +15714,7 @@
                     },
                     "chat_is_channel": {
                         "type": "boolean",
-                        "description": "Pass True to request a channel chat, pass False to request a group or a supergroup chat"
+                        "description": "Pass True to request a channel chat, pass False to request a group or a supergroup chat."
                     },
                     "chat_is_created": {
                         "type": "boolean",
@@ -16481,7 +15726,7 @@
                     },
                     "request_id": {
                         "type": "integer",
-                        "description": "Signed 32-bit identifier of the request, which will be received back in the ChatShared object. Must be unique within the message."
+                        "description": "Signed 32-bit identifier of the request, which will be received back in the ChatShared object. Must be unique within the message"
                     },
                     "request_photo": {
                         "type": "boolean",
@@ -16507,7 +15752,7 @@
                 "properties": {
                     "request_id": {
                         "type": "integer",
-                        "description": "Signed 32-bit identifier of the request. Must be unique within the message."
+                        "description": "Signed 32-bit identifier of the request. Must be unique within the message"
                     },
                     "suggested_name": {
                         "type": "string",
@@ -16529,7 +15774,7 @@
                     },
                     "request_id": {
                         "type": "integer",
-                        "description": "Signed 32-bit identifier of the request that will be received back in the UsersShared object. Must be unique within the message."
+                        "description": "Signed 32-bit identifier of the request that will be received back in the UsersShared object. Must be unique within the message"
                     },
                     "request_name": {
                         "type": "boolean",
@@ -16589,51 +15834,10 @@
                     },
                     "url": {
                         "type": "string",
-                        "description": "Optional. URL to use for the link preview. If empty, then the first URL found in the message text will be used."
+                        "description": "Optional. URL to use for the link preview. If empty, then the first URL found in the message text will be used"
                     }
                 },
                 "description": "Describes the options used for link preview generation.\n"
-            },
-            "LivePhoto": {
-                "type": "object",
-                "properties": {
-                    "duration": {
-                        "type": "integer",
-                        "description": "Duration of the video in seconds as defined by the sender"
-                    },
-                    "file_id": {
-                        "type": "string",
-                        "description": "Identifier for the video file which can be used to download or reuse the file"
-                    },
-                    "file_size": {
-                        "type": "integer",
-                        "description": "Optional. File size in bytes. It can be bigger than 2^31 and some programming languages may have difficulty/silent defects in interpreting it. But it has at most 52 significant bits, so a signed 64-bit integer or double-precision float type are safe for storing this value."
-                    },
-                    "file_unique_id": {
-                        "type": "string",
-                        "description": "Unique identifier for the video file which is supposed to be the same over time and for different bots. Can't be used to download or reuse the file."
-                    },
-                    "height": {
-                        "type": "integer",
-                        "description": "Video height as defined by the sender"
-                    },
-                    "mime_type": {
-                        "type": "string",
-                        "description": "Optional. MIME type of the file as defined by the sender"
-                    },
-                    "photo": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/components/schemas/PhotoSize"
-                        },
-                        "description": "Optional. Available sizes of the corresponding static photo"
-                    },
-                    "width": {
-                        "type": "integer",
-                        "description": "Video width as defined by the sender"
-                    }
-                },
-                "description": "This object represents a live photo.\n"
             },
             "Location": {
                 "type": "object",
@@ -16696,11 +15900,11 @@
                     },
                     "forward_text": {
                         "type": "string",
-                        "description": "Optional. New text of the button in forwarded messages"
+                        "description": "Optional. New text of the button in forwarded messages."
                     },
                     "request_write_access": {
                         "type": "boolean",
-                        "description": "Optional. Pass True to request the permission for your bot to send messages to the user"
+                        "description": "Optional. Pass True to request the permission for your bot to send messages to the user."
                     },
                     "url": {
                         "type": "string",
@@ -16731,7 +15935,7 @@
                         "description": "User that created the bot"
                     }
                 },
-                "description": "This object contains information about the creation, token update, or owner update of a bot that is managed by the current bot.\n"
+                "description": "This object contains information about the creation or token update of a bot that is managed by the current bot.\n"
             },
             "MaskPosition": {
                 "type": "object",
@@ -16825,7 +16029,7 @@
                 "properties": {
                     "animation": {
                         "$ref": "#/components/schemas/Animation",
-                        "description": "Optional. Message is an animation, information about the animation. For backward compatibility, when this field is set, the document field will also be set."
+                        "description": "Optional. Message is an animation, information about the animation. For backward compatibility, when this field is set, the document field will also be set"
                     },
                     "audio": {
                         "$ref": "#/components/schemas/Audio",
@@ -16963,7 +16167,7 @@
                     },
                     "from": {
                         "$ref": "#/components/schemas/User",
-                        "description": "Optional. Sender of the message; may be empty for messages sent to channels. For backward compatibility, if the message was sent on behalf of a chat, the field contains a fake sender user in non-channel chats."
+                        "description": "Optional. Sender of the message; may be empty for messages sent to channels. For backward compatibility, if the message was sent on behalf of a chat, the field contains a fake sender user in non-channel chats"
                     },
                     "game": {
                         "$ref": "#/components/schemas/Game",
@@ -17005,18 +16209,6 @@
                         "type": "boolean",
                         "description": "Optional. Service message: the group has been created"
                     },
-                    "guest_bot_caller_chat": {
-                        "$ref": "#/components/schemas/Chat",
-                        "description": "Optional. For a message sent by a guest bot, this is the chat whose original message triggered the bot's response"
-                    },
-                    "guest_bot_caller_user": {
-                        "$ref": "#/components/schemas/User",
-                        "description": "Optional. For a message sent by a guest bot, this is the user whose original message triggered the bot's response"
-                    },
-                    "guest_query_id": {
-                        "type": "string",
-                        "description": "Optional. The unique identifier for the guest query. Use this identifier with the method answerGuestQuery to send a response message. If non-empty, the message belongs to the chat where the guest bot was summoned, which may not coincide with other existing bot chats sharing the same identifier."
-                    },
                     "has_media_spoiler": {
                         "type": "boolean",
                         "description": "Optional. True, if the message media is covered by a spoiler animation"
@@ -17053,10 +16245,6 @@
                         "$ref": "#/components/schemas/LinkPreviewOptions",
                         "description": "Optional. Options used for link preview generation for the message, if it is a text message and link preview options were changed"
                     },
-                    "live_photo": {
-                        "$ref": "#/components/schemas/LivePhoto",
-                        "description": "Optional. Message is a live photo, information about the live photo. For backward compatibility, when this field is set, the photo field will also be set."
-                    },
                     "location": {
                         "$ref": "#/components/schemas/Location",
                         "description": "Optional. Message is a shared location, information about the location"
@@ -17075,7 +16263,7 @@
                     },
                     "message_id": {
                         "type": "integer",
-                        "description": "Unique message identifier inside this chat. In specific instances (e.g., message containing a video sent to a big chat), the server might automatically schedule a message instead of sending it immediately. In such cases, this field will be 0 and the relevant message will be unusable until it is actually sent."
+                        "description": "Unique message identifier inside this chat. In specific instances (e.g., message containing a video sent to a big chat), the server might automatically schedule a message instead of sending it immediately. In such cases, this field will be 0 and the relevant message will be unusable until it is actually sent"
                     },
                     "message_thread_id": {
                         "type": "integer",
@@ -17252,7 +16440,7 @@
                     },
                     "venue": {
                         "$ref": "#/components/schemas/Venue",
-                        "description": "Optional. Message is a venue, information about the venue. For backward compatibility, when this field is set, the location field will also be set."
+                        "description": "Optional. Message is a venue, information about the venue. For backward compatibility, when this field is set, the location field will also be set"
                     },
                     "via_bot": {
                         "$ref": "#/components/schemas/User",
@@ -17312,7 +16500,7 @@
                 "properties": {
                     "custom_emoji_id": {
                         "type": "string",
-                        "description": "Optional. For “custom_emoji” only, unique identifier of the custom emoji. Use getCustomEmojiStickers to get full information about the sticker."
+                        "description": "Optional. For “custom_emoji” only, unique identifier of the custom emoji. Use getCustomEmojiStickers to get full information about the sticker"
                     },
                     "date_time_format": {
                         "type": "string",
@@ -17332,7 +16520,7 @@
                     },
                     "type": {
                         "type": "string",
-                        "description": "Type of the entity. Currently, can be “mention” (@username), “hashtag” (#hashtag or #hashtag@chatusername), “cashtag” ($USD or $USD@chatusername), “bot_command” (/start@jobs_bot), “url” (https://telegram.org), “email” (do-not-reply@telegram.org), “phone_number” (+1-212-555-0123), “bold” (bold text), “italic” (italic text), “underline” (underlined text), “strikethrough” (strikethrough text), “spoiler” (spoiler message), “blockquote” (block quotation), “expandable_blockquote” (collapsed-by-default block quotation), “code” (monowidth string), “pre” (monowidth block), “text_link” (for clickable text URLs), “text_mention” (for users without usernames), “custom_emoji” (for inline custom emoji stickers), or “date_time” (for formatted date and time)."
+                        "description": "Type of the entity. Currently, can be “mention” (@username), “hashtag” (#hashtag or #hashtag@chatusername), “cashtag” ($USD or $USD@chatusername), “bot_command” (/start@jobs_bot), “url” (https://telegram.org), “email” (do-not-reply@telegram.org), “phone_number” (+1-212-555-0123), “bold” (bold text), “italic” (italic text), “underline” (underlined text), “strikethrough” (strikethrough text), “spoiler” (spoiler message), “blockquote” (block quotation), “expandable_blockquote” (collapsed-by-default block quotation), “code” (monowidth string), “pre” (monowidth block), “text_link” (for clickable text URLs), “text_mention” (for users without usernames), “custom_emoji” (for inline custom emoji stickers), or “date_time” (for formatted date and time)"
                     },
                     "unix_time": {
                         "type": "integer",
@@ -17354,7 +16542,7 @@
                 "properties": {
                     "message_id": {
                         "type": "integer",
-                        "description": "Unique message identifier. In specific instances (e.g., message containing a video sent to a big chat), the server might automatically schedule a message instead of sending it immediately. In such cases, this field will be 0 and the relevant message will be unusable until it is actually sent."
+                        "description": "Unique message identifier. In specific instances (e.g., message containing a video sent to a big chat), the server might automatically schedule a message instead of sending it immediately. In such cases, this field will be 0 and the relevant message will be unusable until it is actually sent"
                     }
                 },
                 "description": "This object represents a unique message identifier.\n"
@@ -17620,7 +16808,7 @@
                     },
                     "unique_gift_number": {
                         "type": "integer",
-                        "description": "Optional. Unique number reserved for this gift when upgraded. See the number field in UniqueGift."
+                        "description": "Optional. Unique number reserved for this gift when upgraded. See the number field in UniqueGift"
                     },
                     "was_refunded": {
                         "type": "boolean",
@@ -17646,7 +16834,7 @@
                     },
                     "next_transfer_date": {
                         "type": "integer",
-                        "description": "Optional. Point in time (Unix timestamp) when the gift can be transferred. If it is in the past, then the gift can be transferred now."
+                        "description": "Optional. Point in time (Unix timestamp) when the gift can be transferred. If it is in the past, then the gift can be transferred now"
                     },
                     "owned_gift_id": {
                         "type": "string",
@@ -17683,7 +16871,7 @@
                     },
                     "next_offset": {
                         "type": "string",
-                        "description": "Optional. Offset for the next request. If empty, then there are no more results."
+                        "description": "Optional. Offset for the next request. If empty, then there are no more results"
                     },
                     "total_count": {
                         "type": "integer",
@@ -17694,16 +16882,13 @@
             },
             "PaidMedia": {
                 "type": "object",
-                "description": "This object describes paid media. Currently, it can be one of\n- PaidMediaLivePhoto\n- PaidMediaPhoto\n- PaidMediaPreview\n- PaidMediaVideo\n",
+                "description": "This object describes paid media. Currently, it can be one of\n- PaidMediaPreview\n- PaidMediaPhoto\n- PaidMediaVideo\n",
                 "oneOf": [
                     {
-                        "$ref": "#/components/schemas/PaidMediaLivePhoto"
+                        "$ref": "#/components/schemas/PaidMediaPreview"
                     },
                     {
                         "$ref": "#/components/schemas/PaidMediaPhoto"
-                    },
-                    {
-                        "$ref": "#/components/schemas/PaidMediaPreview"
                     },
                     {
                         "$ref": "#/components/schemas/PaidMediaVideo"
@@ -17726,20 +16911,6 @@
                     }
                 },
                 "description": "Describes the paid media added to a message.\n"
-            },
-            "PaidMediaLivePhoto": {
-                "type": "object",
-                "properties": {
-                    "live_photo": {
-                        "$ref": "#/components/schemas/LivePhoto",
-                        "description": "The photo"
-                    },
-                    "type": {
-                        "type": "string",
-                        "description": "Type of the paid media, always “live_photo”"
-                    }
-                },
-                "description": "The paid media is a live photo.\n"
             },
             "PaidMediaPhoto": {
                 "type": "object",
@@ -18146,13 +17317,6 @@
                         },
                         "description": "Optional. Array of 0-based identifiers of the correct answer options. Available only for polls in quiz mode which are closed or were sent (not forwarded) by the bot or to the private chat with the bot."
                     },
-                    "country_codes": {
-                        "type": "array",
-                        "items": {
-                            "type": "string"
-                        },
-                        "description": "Optional. A list of two-letter ISO 3166-1 alpha-2 country codes indicating the countries from which users can vote in the poll. The country code “FT” is used for users with anonymous numbers. If omitted, then users from any country can participate in the poll."
-                    },
                     "description": {
                         "type": "string",
                         "description": "Optional. Description of the poll; for polls inside the Message object only"
@@ -18175,10 +17339,6 @@
                         },
                         "description": "Optional. Special entities like usernames, URLs, bot commands, etc. that appear in the explanation"
                     },
-                    "explanation_media": {
-                        "$ref": "#/components/schemas/PollMedia",
-                        "description": "Optional. Media added to the quiz explanation"
-                    },
                     "id": {
                         "type": "string",
                         "description": "Unique poll identifier"
@@ -18190,14 +17350,6 @@
                     "is_closed": {
                         "type": "boolean",
                         "description": "True, if the poll is closed"
-                    },
-                    "media": {
-                        "$ref": "#/components/schemas/PollMedia",
-                        "description": "Optional. Media added to the poll description; for polls inside the Message object only"
-                    },
-                    "members_only": {
-                        "type": "boolean",
-                        "description": "True if voting is limited to users who have been members of the chat where the poll was originally sent for more than 24 hours"
                     },
                     "open_period": {
                         "type": "integer",
@@ -18264,51 +17416,6 @@
                 },
                 "description": "This object represents an answer of a user in a non-anonymous poll.\n"
             },
-            "PollMedia": {
-                "type": "object",
-                "properties": {
-                    "animation": {
-                        "$ref": "#/components/schemas/Animation",
-                        "description": "Optional. Media is an animation, information about the animation"
-                    },
-                    "audio": {
-                        "$ref": "#/components/schemas/Audio",
-                        "description": "Optional. Media is an audio file, information about the file; currently, can't be received in a poll option"
-                    },
-                    "document": {
-                        "$ref": "#/components/schemas/Document",
-                        "description": "Optional. Media is a general file, information about the file; currently, can't be received in a poll option"
-                    },
-                    "live_photo": {
-                        "$ref": "#/components/schemas/LivePhoto",
-                        "description": "Optional. Media is a live photo, information about the live photo"
-                    },
-                    "location": {
-                        "$ref": "#/components/schemas/Location",
-                        "description": "Optional. Media is a shared location, information about the location"
-                    },
-                    "photo": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/components/schemas/PhotoSize"
-                        },
-                        "description": "Optional. Media is a photo, available sizes of the photo"
-                    },
-                    "sticker": {
-                        "$ref": "#/components/schemas/Sticker",
-                        "description": "Optional. Media is a sticker, information about the sticker; currently, for poll options only"
-                    },
-                    "venue": {
-                        "$ref": "#/components/schemas/Venue",
-                        "description": "Optional. Media is a venue, information about the venue"
-                    },
-                    "video": {
-                        "$ref": "#/components/schemas/Video",
-                        "description": "Optional. Media is a video, information about the video"
-                    }
-                },
-                "description": "At most one of the optional fields can be present in any given object.\n"
-            },
             "PollOption": {
                 "type": "object",
                 "properties": {
@@ -18323,10 +17430,6 @@
                     "addition_date": {
                         "type": "integer",
                         "description": "Optional. Point in time (Unix timestamp) when the option was added; omitted if the option existed in the original poll"
-                    },
-                    "media": {
-                        "$ref": "#/components/schemas/PollMedia",
-                        "description": "Optional. Media added to the poll option"
                     },
                     "persistent_id": {
                         "type": "string",
@@ -18439,7 +17542,7 @@
                 "properties": {
                     "expiration_date": {
                         "type": "integer",
-                        "description": "Expiration date of the prepared message, in Unix time. Expired prepared messages can no longer be used."
+                        "description": "Expiration date of the prepared message, in Unix time. Expired prepared messages can no longer be used"
                     },
                     "id": {
                         "type": "string",
@@ -18524,7 +17627,7 @@
                 "properties": {
                     "emoji": {
                         "type": "string",
-                        "description": "Reaction emoji. Currently, it can be one of \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\"."
+                        "description": "Reaction emoji. Currently, it can be one of \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\""
                     },
                     "type": {
                         "type": "string",
@@ -18548,7 +17651,7 @@
                 "properties": {
                     "currency": {
                         "type": "string",
-                        "description": "Three-letter ISO 4217 currency code, or “XTR” for payments in Telegram Stars. Currently, always “XTR”."
+                        "description": "Three-letter ISO 4217 currency code, or “XTR” for payments in Telegram Stars. Currently, always “XTR”"
                     },
                     "invoice_payload": {
                         "type": "string",
@@ -18603,7 +17706,7 @@
                         "description": "Optional. Use this parameter if you want to show the keyboard to specific users only. Targets: 1) users that are @mentioned in the text of the Message object; 2) if the bot's message is a reply to a message in the same chat and forum topic, sender of the original message.Example: A user requests to change the bot's language, bot replies to the request with a keyboard to select the new language. Other users in the group don't see the keyboard."
                     }
                 },
-                "description": "This object represents a custom keyboard with reply options (see Introduction to bots for details and examples). Not supported in channels and for messages sent on behalf of a business account.\n"
+                "description": "This object represents a custom keyboard with reply options (see Introduction to bots for details and examples). Not supported in channels and for messages sent on behalf of a Telegram Business account.\n"
             },
             "ReplyKeyboardRemove": {
                 "type": "object",
@@ -18617,7 +17720,7 @@
                         "description": "Optional. Use this parameter if you want to remove the keyboard for specific users only. Targets: 1) users that are @mentioned in the text of the Message object; 2) if the bot's message is a reply to a message in the same chat and forum topic, sender of the original message.Example: A user votes in a poll, bot returns confirmation message in reply to the vote and removes the keyboard for that user, while still showing the keyboard with poll options to users who haven't voted yet."
                     }
                 },
-                "description": "Upon receiving a message with this object, Telegram clients will remove the current custom keyboard and display the default letter-keyboard. By default, custom keyboards are displayed until a new keyboard is sent by a bot. An exception is made for one-time keyboards that are hidden immediately after the user presses a button (see ReplyKeyboardMarkup). Not supported in channels and for messages sent on behalf of a business account.\n"
+                "description": "Upon receiving a message with this object, Telegram clients will remove the current custom keyboard and display the default letter-keyboard. By default, custom keyboards are displayed until a new keyboard is sent by a bot. An exception is made for one-time keyboards that are hidden immediately after the user presses a button (see ReplyKeyboardMarkup). Not supported in channels and for messages sent on behalf of a Telegram Business account.\n"
             },
             "ReplyParameters": {
                 "type": "object",
@@ -18635,7 +17738,7 @@
                                 "type": "string"
                             }
                         ],
-                        "description": "Optional. If the message to be replied to is from a different chat, unique identifier for the chat or username of the bot, supergroup or channel in the format @username. Not supported for messages sent on behalf of a business account and messages from channel direct messages chats."
+                        "description": "Optional. If the message to be replied to is from a different chat, unique identifier for the chat or username of the channel (in the format @channelusername). Not supported for messages sent on behalf of a business account and messages from channel direct messages chats."
                     },
                     "checklist_task_id": {
                         "type": "integer",
@@ -18737,16 +17840,6 @@
                     }
                 },
                 "description": "The withdrawal succeeded.\n"
-            },
-            "SentGuestMessage": {
-                "type": "object",
-                "properties": {
-                    "inline_message_id": {
-                        "type": "string",
-                        "description": "Identifier of the sent inline message"
-                    }
-                },
-                "description": "Describes an inline message sent by a guest bot.\n"
             },
             "SentWebAppMessage": {
                 "type": "object",
@@ -18895,11 +17988,11 @@
                     },
                     "receiver": {
                         "$ref": "#/components/schemas/TransactionPartner",
-                        "description": "Optional. Receiver of an outgoing transaction (e.g., a user for a purchase refund, Fragment for a withdrawal). Only for outgoing transactions."
+                        "description": "Optional. Receiver of an outgoing transaction (e.g., a user for a purchase refund, Fragment for a withdrawal). Only for outgoing transactions"
                     },
                     "source": {
                         "$ref": "#/components/schemas/TransactionPartner",
-                        "description": "Optional. Source of an incoming transaction (e.g., a user purchasing goods or services, Fragment refunding a failed withdrawal). Only for incoming transactions."
+                        "description": "Optional. Source of an incoming transaction (e.g., a user purchasing goods or services, Fragment refunding a failed withdrawal). Only for incoming transactions"
                     }
                 },
                 "description": "Describes a Telegram Star transaction. Note that if the buyer initiates a chargeback with the payment provider from whom they acquired Stars (e.g., Apple, Google) following this transaction, the refunded Stars will be deducted from the bot's balance. This is outside of Telegram's control.\n"
@@ -19304,7 +18397,7 @@
                     },
                     "currency": {
                         "type": "string",
-                        "description": "Currency in which the payment was made. Currently, one of “XTR” for Telegram Stars or “TON” for toncoins."
+                        "description": "Currency in which the payment was made. Currently, one of “XTR” for Telegram Stars or “TON” for toncoins"
                     },
                     "star_amount": {
                         "$ref": "#/components/schemas/StarAmount",
@@ -19340,7 +18433,7 @@
                     },
                     "currency": {
                         "type": "string",
-                        "description": "Currency in which the post will be paid. Currently, must be one of “XTR” for Telegram Stars or “TON” for toncoins."
+                        "description": "Currency in which the post will be paid. Currently, must be one of “XTR” for Telegram Stars or “TON” for toncoins"
                     }
                 },
                 "description": "Describes the price of a suggested post.\n"
@@ -19380,7 +18473,7 @@
                     },
                     "query": {
                         "type": "string",
-                        "description": "Optional. The default inline query to be inserted in the input field. If left empty, only the bot's username will be inserted."
+                        "description": "Optional. The default inline query to be inserted in the input field. If left empty, only the bot's username will be inserted"
                     }
                 },
                 "description": "This object represents an inline button that switches the current user to inline mode in a chosen chat, with an optional default inline query.\n"
@@ -19607,7 +18700,7 @@
                     },
                     "name": {
                         "type": "string",
-                        "description": "Unique name of the gift. This name can be used in https://t.me/nft/... links and story areas."
+                        "description": "Unique name of the gift. This name can be used in https://t.me/nft/... links and story areas"
                     },
                     "number": {
                         "type": "integer",
@@ -19717,11 +18810,11 @@
                     },
                     "next_transfer_date": {
                         "type": "integer",
-                        "description": "Optional. Point in time (Unix timestamp) when the gift can be transferred. If it is in the past, then the gift can be transferred now."
+                        "description": "Optional. Point in time (Unix timestamp) when the gift can be transferred. If it is in the past, then the gift can be transferred now"
                     },
                     "origin": {
                         "type": "string",
-                        "description": "Origin of the gift. Currently, either “upgrade” for gifts upgraded from regular gifts, “transfer” for gifts transferred from other users or channels, “resale” for gifts bought from other users, “gifted_upgrade” for upgrades purchased after the gift was sent, or “offer” for gifts bought or sold through gift purchase offers."
+                        "description": "Origin of the gift. Currently, either “upgrade” for gifts upgraded from regular gifts, “transfer” for gifts transferred from other users or channels, “resale” for gifts bought from other users, “gifted_upgrade” for upgrades purchased after the gift was sent, or “offer” for gifts bought or sold through gift purchase offers"
                     },
                     "owned_gift_id": {
                         "type": "string",
@@ -19825,17 +18918,13 @@
                         "$ref": "#/components/schemas/Message",
                         "description": "Optional. New version of a message that is known to the bot and was edited. This update may at times be triggered by changes to message fields that are either unavailable or not actively used by your bot."
                     },
-                    "guest_message": {
-                        "$ref": "#/components/schemas/Message",
-                        "description": "Optional. New guest message. The bot can use the field Message.guest_query_id and the method answerGuestQuery to send a message in response."
-                    },
                     "inline_query": {
                         "$ref": "#/components/schemas/InlineQuery",
                         "description": "Optional. New incoming inline query"
                     },
                     "managed_bot": {
                         "$ref": "#/components/schemas/ManagedBotUpdated",
-                        "description": "Optional. A new bot was created to be managed by the bot, or token or owner of a managed bot was changed"
+                        "description": "Optional. A new bot was created to be managed by the bot or token of a bot was changed"
                     },
                     "message": {
                         "$ref": "#/components/schemas/Message",
@@ -19855,7 +18944,7 @@
                     },
                     "poll": {
                         "$ref": "#/components/schemas/Poll",
-                        "description": "Optional. New poll state. Bots receive only updates about manually stopped polls and polls, which are sent by the bot."
+                        "description": "Optional. New poll state. Bots receive only updates about manually stopped polls and polls, which are sent by the bot"
                     },
                     "poll_answer": {
                         "$ref": "#/components/schemas/PollAnswer",
@@ -19863,7 +18952,7 @@
                     },
                     "pre_checkout_query": {
                         "$ref": "#/components/schemas/PreCheckoutQuery",
-                        "description": "Optional. New incoming pre-checkout query. Contains full information about checkout."
+                        "description": "Optional. New incoming pre-checkout query. Contains full information about checkout"
                     },
                     "purchased_paid_media": {
                         "$ref": "#/components/schemas/PaidMediaPurchased",
@@ -19875,14 +18964,14 @@
                     },
                     "shipping_query": {
                         "$ref": "#/components/schemas/ShippingQuery",
-                        "description": "Optional. New incoming shipping query. Only for invoices with flexible price."
+                        "description": "Optional. New incoming shipping query. Only for invoices with flexible price"
                     },
                     "update_id": {
                         "type": "integer",
                         "description": "The update's unique identifier. Update identifiers start from a certain positive number and increase sequentially. This identifier becomes especially handy if you're using webhooks, since it allows you to ignore repeated updates or to restore the correct update sequence, should they get out of order. If there are no new updates for at least a week, then identifier of the next update will be chosen randomly instead of sequentially."
                     }
                 },
-                "description": "This object represents an incoming update.At most one of the optional fields can be present in any given update.\n"
+                "description": "This object represents an incoming update.At most one of the optional parameters can be present in any given update.\n"
             },
             "User": {
                 "type": "object",
@@ -19897,7 +18986,7 @@
                     },
                     "can_connect_to_business": {
                         "type": "boolean",
-                        "description": "Optional. True, if the bot can be connected to a user account to manage it. Returned only in getMe."
+                        "description": "Optional. True, if the bot can be connected to a Telegram Business account to receive its messages. Returned only in getMe."
                     },
                     "can_join_groups": {
                         "type": "boolean",
@@ -19942,10 +19031,6 @@
                     "last_name": {
                         "type": "string",
                         "description": "Optional. User's or bot's last name"
-                    },
-                    "supports_guest_queries": {
-                        "type": "boolean",
-                        "description": "Optional. True, if the bot supports guest queries from chats it is not a member of. Returned only in getMe."
                     },
                     "supports_inline_queries": {
                         "type": "boolean",
@@ -20042,7 +19127,7 @@
                         "items": {
                             "$ref": "#/components/schemas/SharedUser"
                         },
-                        "description": "Information about users shared with the bot"
+                        "description": "Information about users shared with the bot."
                     }
                 },
                 "description": "This object contains information about the users whose identifiers were shared with the bot using a KeyboardButtonRequestUsers button.\n"
@@ -20072,7 +19157,7 @@
                     },
                     "location": {
                         "$ref": "#/components/schemas/Location",
-                        "description": "Venue location. Can't be a live location."
+                        "description": "Venue location. Can't be a live location"
                     },
                     "title": {
                         "type": "string",
@@ -20296,7 +19381,7 @@
                         "items": {
                             "type": "string"
                         },
-                        "description": "Optional. A list of update types the bot is subscribed to. Defaults to all update types except chat_member, message_reaction, and message_reaction_count."
+                        "description": "Optional. A list of update types the bot is subscribed to. Defaults to all update types except chat_member"
                     },
                     "has_custom_certificate": {
                         "type": "boolean",
